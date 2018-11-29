@@ -9,6 +9,7 @@ import random
 
 
 def jogo():
+    obstaculos = []
     primeiro_nivel = 594
     segundo_nivel = 400
     terceiro_nivel = 208
@@ -59,7 +60,8 @@ def jogo():
     seringa.set_position(956, primeiro_nivel-seringa.height)
     primeirossocorros.set_position(1001, primeiro_nivel-primeirossocorros.height)
     granada.set_position(438,segundo_nivel-granada.height)
-
+    obstaculos.append(barrada)
+    obstaculos.append(caixa)
     joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
     joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
 
@@ -125,10 +127,18 @@ def jogo():
                 joy_play.move_y(+SpeedY * janela.delta_time())
                 joysubindo.draw()
                 joysubindo.update()
+
+        # aqui é a colisão com os obstáculos
+        for i in obstaculos:
+            x_ant = joy_play.x
+            if x_ant <= i.x:
+                x_ant = x_ant - 5
             else:
-                joysubindo.draw()
+                x_ant = x_ant + 5
+            if (joy_play.collided(i)):
+                joy_play.set_position(x_ant, joy_play.y)
 
-
+            
         joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
         joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
 
