@@ -10,6 +10,8 @@ import random
 
 def jogo():
     obstaculos = []
+    itens = []
+    bolsa = []
     primeiro_nivel = 594
     segundo_nivel = 400
     terceiro_nivel = 208
@@ -29,7 +31,7 @@ def jogo():
     dinamite = Sprite("imagens/dinamite.png")
     seringa = Sprite("imagens/seringa.png")
     barrada = Sprite("imagens/barrada1.png")
-    bolsa = Sprite("imagens/bolsa.png")
+    mochila = Sprite("imagens/bolsa.png")
     primeirossocorros = Sprite("imagens/primeiros-socorros.png")
     joydireita.set_total_duration(400)
     joyesquerda.set_total_duration(400)
@@ -56,12 +58,18 @@ def jogo():
     joysubindo.set_position(325, 457)
     chave.set_position(206, primeiro_nivel-chave.height)
     dinamite.set_position(390, primeiro_nivel-dinamite.height)
-    bolsa.set_position(543, segundo_nivel-bolsa.height)
+    mochila.set_position(543, segundo_nivel-mochila.height)
     seringa.set_position(956, primeiro_nivel-seringa.height)
     primeirossocorros.set_position(1001, primeiro_nivel-primeirossocorros.height)
     granada.set_position(438,segundo_nivel-granada.height)
     obstaculos.append(barrada)
     obstaculos.append(caixa)
+    obstaculos.append(fogo)
+    itens.append(primeirossocorros)
+    itens.append(chave)
+    itens.append(dinamite)
+    itens.append(seringa)
+    itens.append(granada)
     joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
     joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
 
@@ -70,24 +78,20 @@ def jogo():
     final_do_mapa_direita = 1299
 
     while True:
-        joy_play.draw()
         fundo.draw()
+        #for i in range(len(bolsa)):
+            
+        for i in range(len(itens)):
+            itens[i].draw()
+        for i in range(len(obstaculos)):
+            obstaculos[i].draw()    
         escada.draw()
         escada1.draw()
         escada2.draw()
-        chave.draw()
-        dinamite.draw()
-        seringa.draw()
-        bolsa.draw()
-        barrada.draw()
-        granada.draw()
-        fogo.draw()
-        fogo.update()
-        caixa.draw()
-        primeirossocorros.draw()
         soldado.draw()
         soldado_morto.draw()
-
+        mochila.draw()
+        joy_play.draw()
         #joydireita.draw()
         #joydireita.update()
         #joyesquerda.draw()
@@ -104,29 +108,35 @@ def jogo():
                 joy_play.move_x(-SpeedX * janela.delta_time())
                 joyesquerda.draw()
                 joyesquerda.update()
+                joy_play.hide()
             elif (segundo_nivel -joy_play.height - 10 < joy_play.y < segundo_nivel -joy_play.height + 10) and teclado.key_pressed("LEFT") and joy_play.x >limite_esquerdo_segundo_nivel:
                 joy_play.move_x(-SpeedX * janela.delta_time())
                 joyesquerda.draw()
                 joyesquerda.update()
-
+                joy_play.hide()
             #enfermeira joy vai andar para direita só até o final do mapa
             elif teclado.key_pressed("RIGHT") and joy_play.x < (final_do_mapa_direita - joy_play.width):
                 joy_play.move_x(SpeedX * janela.delta_time())
+                joy_play.hide()
                 joydireita.draw()
                 joydireita.update()
 
             else:
-                joy_play.draw()
+                joy_play.unhide()
 
         if((escada.x -15 < joy_play.x < escada.x + 15) or (escada1.x - 15 < joy_play.x < escada1.x + 15) or (escada2.x - 15 < joy_play.x < escada2.x + 15)):
             if teclado.key_pressed("UP") and joy_play.y > segundo_nivel - joy_play.height:
                 joy_play.move_y(-SpeedY * janela.delta_time())
                 joysubindo.draw()
                 joysubindo.update()
+                joy_play.hide()
             elif teclado.key_pressed("DOWN") and joy_play.y < primeiro_nivel-joy_play.height:
                 joy_play.move_y(+SpeedY * janela.delta_time())
                 joysubindo.draw()
                 joysubindo.update()
+                joy_play.hide()
+            else:
+                joy_play.unhide()
 
         # aqui é a colisão com os obstáculos
         for i in obstaculos:
@@ -138,8 +148,12 @@ def jogo():
             if (joy_play.collided(i)):
                 joy_play.set_position(x_ant, joy_play.y)
 
+        for i in itens:
+            if joy_play.collided(i):
+                if teclado.key_pressed('SPACE'):
+                    bolsa.append(i)
+                    itens.remove(i)
             
         joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
         joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
-
         janela.update()
