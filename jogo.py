@@ -6,7 +6,7 @@ from PPlay.gameobject import*
 from PPlay.sprite import *
 from PPlay.collision import *
 import random
-
+import itens
 
 def jogo():
     obstaculos = []
@@ -84,7 +84,7 @@ def jogo():
     SpeedX = 300
     SpeedY = 200
     final_do_mapa_direita = 1299
-
+    y = 0
     while True:
         fundo.draw()
         if(teclado.key_pressed("LEFT") or teclado.key_pressed("RIGHT")):
@@ -102,7 +102,7 @@ def jogo():
         soldado_morto.draw()
         mochila.draw()
         joy_play.draw()
-        y = 20
+
         #for i in range(len(bolsa)):
         #    if(bolsa_nome[i] == "seringa"):
         #        seringa_grande = Sprite("imagens/seringa-grande.png")
@@ -173,20 +173,52 @@ def jogo():
                 x_ant = x_ant + 3
             if (joy_play.collided(i)):
                 joy_play.set_position(x_ant, joy_play.y)
-        i = 0
+
+
         for i in itens:
             if teclado.key_pressed('SPACE'):
                 if joy_play.collided(i):
-                    bolsa.append(i)
                     posicao = itens.index(i)
+                    if(itens_nome[posicao] == "primeiros_socorros"):
+                        primeiros_socorros_grande = Sprite("imagens/primeiros-socorros-grande.png")
+                        primeiros_socorros_grande.set_position(20, primeiros_socorros_grande.height + y )
+                        bolsa.append(primeiros_socorros_grande)
+                    if(itens_nome[posicao] == "seringa"):
+                        seringa_grande = Sprite("imagens/seringa-grande.png")
+                        seringa_grande.set_position(20, seringa_grande.height + y )
+                        bolsa.append(seringa_grande)
+                    if(itens_nome[posicao] == "chave"):
+                        chave_grande = Sprite("imagens/chave-grande.png")
+                        chave_grande.set_position(20, chave_grande.height + y )
+                        bolsa.append(chave_grande)
+                    if(itens_nome[posicao] == "granada"):
+                        granada_grande = Sprite("imagens/granada-grande.png")
+                        granada_grande.set_position(20, granada_grande.height + y)
+                        bolsa.append(granada_grande)
+                    if(itens_nome[posicao] == "dinamite"):
+                        dinamite_grande = Sprite("imagens/dinamite-grande.png")
+                        dinamite_grande.set_position(20, dinamite_grande.height + y)
+                        bolsa.append(dinamite_grande)
                     bolsa_nome.append(itens_nome[posicao])
                     itens.remove(i)
                     itens_nome.remove(itens_nome[posicao])
                     print(bolsa)
                     print(bolsa_nome)
+                    y = y + 130
+                    #itens.bolsa_draw(bolsa)
         
-          
-            
+        #removendo itens
+        if teclado.key_pressed('z'):
+            print(y)
+            if len(bolsa)>=1:
+                bolsa.remove(bolsa[-1])
+                bolsa_nome.remove(bolsa_nome[-1])
+                y = y - 130
+                pygame.time.wait(150)
+        #print(len(bolsa))
+        #itens.bolsa_draw(bolsa)  
+        for i in range(len(bolsa)):
+            bolsa[i].draw() 
         joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
         joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
         janela.update()
