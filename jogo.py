@@ -77,7 +77,6 @@ def jogo():
     itens_nome.append("granada")
     itens.append(dinamite)
     itens_nome.append("dinamite")
-    print(len(itens))
 
     joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
     joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
@@ -103,6 +102,20 @@ def jogo():
         soldado_morto.draw()
         mochila.draw()
         joy_play.draw()
+        y = 20
+        #for i in range(len(bolsa)):
+        #    if(bolsa_nome[i] == "seringa"):
+        #        seringa_grande = Sprite("imagens/seringa-grande.png")
+        #        seringa_grande.set_position(17, y)
+        #        seringa_grande.draw()
+        #        y = y + seringa_grande.height
+        #    if(bolsa_nome[i] == "dinamite"):
+        #        dinamite_grande = Sprite("imagens/dinamite-grande.png")
+        #        dinamite_grande.set_position(17, y)
+        #        dinamite.draw()
+        #        y = y + dinamite_grande.height
+        #    y = y+55 
+
         #joydireita.draw()
         #joydireita.update()
         #joyesquerda.draw()
@@ -161,16 +174,16 @@ def jogo():
             if (joy_play.collided(i)):
                 joy_play.set_position(x_ant, joy_play.y)
         i = 0
-        for x in itens:
-            if joy_play.collided(x):
-                if teclado.key_pressed('SPACE'):
-                    bolsa.append(x)
-                    bolsa_nome.append(itens_nome[i])
-                    itens.remove(x)
-                    itens_nome.remove(itens_nome[i])
+        for i in itens:
+            if teclado.key_pressed('SPACE'):
+                if joy_play.collided(i):
+                    bolsa.append(i)
+                    posicao = itens.index(i)
+                    bolsa_nome.append(itens_nome[posicao])
+                    itens.remove(i)
+                    itens_nome.remove(itens_nome[posicao])
                     print(bolsa)
                     print(bolsa_nome)
-            i=+1
         
           
             
