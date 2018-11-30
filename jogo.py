@@ -11,7 +11,9 @@ import random
 def jogo():
     obstaculos = []
     itens = []
+    itens_nome = []
     bolsa = []
+    bolsa_nome = []
     primeiro_nivel = 594
     segundo_nivel = 400
     terceiro_nivel = 208
@@ -66,10 +68,17 @@ def jogo():
     obstaculos.append(caixa)
     obstaculos.append(fogo)
     itens.append(primeirossocorros)
-    itens.append(chave)
-    itens.append(dinamite)
+    itens_nome.append("primeiros_socorros")
     itens.append(seringa)
+    itens_nome.append("seringa")
+    itens.append(chave)
+    itens_nome.append("chave")
     itens.append(granada)
+    itens_nome.append("granada")
+    itens.append(dinamite)
+    itens_nome.append("dinamite")
+    print(len(itens))
+
     joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
     joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
 
@@ -79,6 +88,8 @@ def jogo():
 
     while True:
         fundo.draw()
+        if(teclado.key_pressed("LEFT") or teclado.key_pressed("RIGHT")):
+            joy_play.hide()
         #for i in range(len(bolsa)):
             
         for i in range(len(itens)):
@@ -124,6 +135,8 @@ def jogo():
             else:
                 joy_play.unhide()
 
+        if not(joy_play.x < (final_do_mapa_direita - joy_play.width)):
+            joy_play.set_position(final_do_mapa_direita-joy_play.width - 2, joy_play.y)
         if((escada.x -15 < joy_play.x < escada.x + 15) or (escada1.x - 15 < joy_play.x < escada1.x + 15) or (escada2.x - 15 < joy_play.x < escada2.x + 15)):
             if teclado.key_pressed("UP") and joy_play.y > segundo_nivel - joy_play.height:
                 joy_play.move_y(-SpeedY * janela.delta_time())
@@ -142,17 +155,24 @@ def jogo():
         for i in obstaculos:
             x_ant = joy_play.x
             if x_ant <= i.x:
-                x_ant = x_ant - 5
+                x_ant = x_ant - 3
             else:
-                x_ant = x_ant + 5
+                x_ant = x_ant + 3
             if (joy_play.collided(i)):
                 joy_play.set_position(x_ant, joy_play.y)
-
-        for i in itens:
-            if joy_play.collided(i):
+        i = 0
+        for x in itens:
+            if joy_play.collided(x):
                 if teclado.key_pressed('SPACE'):
-                    bolsa.append(i)
-                    itens.remove(i)
+                    bolsa.append(x)
+                    bolsa_nome.append(itens_nome[i])
+                    itens.remove(x)
+                    itens_nome.remove(itens_nome[i])
+                    print(bolsa)
+                    print(bolsa_nome)
+            i=+1
+        
+          
             
         joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
         joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
