@@ -7,7 +7,7 @@ from PPlay.sound import *
 
 import jogo
 import rank
-
+import inventario
 
 def menu():
     janela = Window(1300, 700)

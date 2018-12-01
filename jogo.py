@@ -6,7 +6,7 @@ from PPlay.gameobject import*
 from PPlay.sprite import *
 from PPlay.collision import *
 import random
-import itens
+import inventario
 
 def jogo():
     obstaculos = []
@@ -14,6 +14,7 @@ def jogo():
     itens_nome = []
     bolsa = []
     bolsa_nome = []
+    f = 0
     primeiro_nivel = 594
     segundo_nivel = 400
     terceiro_nivel = 208
@@ -148,6 +149,7 @@ def jogo():
             else:
                 joy_play.unhide()
 
+        #só pode subir ou descer se tiver em alguma escada
         if not(joy_play.x < (final_do_mapa_direita - joy_play.width)):
             joy_play.set_position(final_do_mapa_direita-joy_play.width - 2, joy_play.y)
         if((escada.x -15 < joy_play.x < escada.x + 15) or (escada1.x - 15 < joy_play.x < escada1.x + 15) or (escada2.x - 15 < joy_play.x < escada2.x + 15)):
@@ -174,7 +176,7 @@ def jogo():
             if (joy_play.collided(i)):
                 joy_play.set_position(x_ant, joy_play.y)
 
-
+        # adicionando itens na bolsa
         for i in itens:
             if teclado.key_pressed('SPACE'):
                 if joy_play.collided(i):
@@ -212,10 +214,11 @@ def jogo():
                     y = y + 130
                     #itens.bolsa_draw(bolsa)
         
-        #removendo itens
+        #removendo itens da bolsa
         if teclado.key_pressed('z'):
+            f=1
             print(y)
-            if len(bolsa)>=1:
+            if len(bolsa)>=1 and f==1:
                 if bolsa_nome[-1] == "seringa":
                     seringa = Sprite("imagens/seringa.png")
                     seringa.set_position(joy_play.x, joy_play.y+joy_play.height-seringa.height)
@@ -244,13 +247,17 @@ def jogo():
                 bolsa.remove(bolsa[-1])
                 bolsa_nome.remove(bolsa_nome[-1])
                 y = y - 130
-                pygame.time.wait(150)
                 print(itens)
+                pygame.time.wait(200)
+                f = 0
                 #print(len(itens))
         #print(len(bolsa))
-        #itens.bolsa_draw(bolsa)  
-        for i in range(len(bolsa)):
-            bolsa[i].draw() 
+        inventario.bolsa_draw(bolsa) 
+
+        #imprime os itens da bolsa  
+        #for i in range(len(bolsa)):
+        #    bolsa[i].draw() 
+        
         joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
         joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
         janela.update()

@@ -8,5 +8,6 @@ import random
 
 
 def bolsa_draw(bolsa):
-    for i in range(len(bolsa)):
-        bolsa[i].draw()
+	for i in range(len(bolsa)):
+		bolsa[i].draw()
+	return
