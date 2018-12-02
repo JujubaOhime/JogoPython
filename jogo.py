@@ -9,6 +9,7 @@ import random
 import inventario
 import movimento
 import draw_sprites
+import time
 
 def jogo():
     obstaculos = []
@@ -17,6 +18,8 @@ def jogo():
     bolsa = []
     bolsa_nome = []
     f = 0
+    soldado = []
+    soldado_ferido = []
     primeiro_nivel = 594
     segundo_nivel = 400
     terceiro_nivel = 208
@@ -87,8 +90,10 @@ def jogo():
     SpeedX = 300
     SpeedY = 200
     final_do_mapa_direita = 1299
-    posicao_y_draw_inventario = 0
+    posicao_y_draw_inventario = -60
+    
     while True:
+        tempo = time.time()
         draw_sprites.draw(fundo, itens, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, joy_play, teclado)
 
         #range da joy no segundo andar
@@ -104,7 +109,7 @@ def jogo():
 
         #removendo itens da bolsa
         
-        posicao_y_draw_inventario = inventario.remove_itens(bolsa, bolsa_nome, itens, itens_nome, joy_play, posicao_y_draw_inventario, teclado)
+        posicao_y_draw_inventario = inventario.remove_itens(bolsa, bolsa_nome, itens, itens_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos)
 
         #print(len(bolsa))
         inventario.bolsa_draw(bolsa) 
@@ -116,6 +121,5 @@ def jogo():
         if teclado.key_pressed("ESC"):
             pygame.time.wait(150)
             return
-            
+        #print(tempo)
         janela.update()
-        

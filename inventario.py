@@ -5,6 +5,7 @@ from PPlay.gameobject import*
 from PPlay.mouse import*
 from PPlay.sound import*
 import random
+import time
 
 
 def bolsa_draw(bolsa):
@@ -12,9 +13,10 @@ def bolsa_draw(bolsa):
 		bolsa[i].draw()
 	return
 
-def remove_itens(bolsa, bolsa_nome, itens, itens_nome, joy_play, posicao_y_draw_inventario, teclado):
+def remove_itens(bolsa, bolsa_nome, itens, itens_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos):
 	if teclado.key_pressed('z'):
 		f = 1
+		passou = 0
 		print(posicao_y_draw_inventario)
 		if len(bolsa)>=1 and f==1:
 			if bolsa_nome[-1] == "seringa":
@@ -25,8 +27,20 @@ def remove_itens(bolsa, bolsa_nome, itens, itens_nome, joy_play, posicao_y_draw_
 			if bolsa_nome[-1] == "dinamite":
 				dinamite = Sprite("imagens/dinamite.png")
 				dinamite.set_position(joy_play.x, joy_play.y+joy_play.height-dinamite.height)
-				itens.append(dinamite)
-				itens_nome.append("dinamite")
+				for i in obstaculos:
+					joyplay1 = Sprite("imagens/joy-frente.png")
+					joyplay1.set_position(joy_play.x+50, joy_play.y)
+					joyplay2 = Sprite("imagens/joy-frente.png")
+					joyplay2.set_position(joy_play.x-50, joy_play.y)
+					if joyplay1.collided(i):
+						obstaculos.remove(i)
+						passou = 1
+					elif joyplay2.collided(i):
+						obstaculos.remove(i)
+						passou = 1
+				if passou == 0:
+					itens.append(dinamite)
+					itens_nome.append("dinamite")
 			if bolsa_nome[-1] == "primeiros_socorros":
 				primeirossocorros = Sprite("imagens/primeiros-socorros.png")
 				primeirossocorros.set_position(joy_play.x, joy_play.y+joy_play.height-primeirossocorros.height)
@@ -40,13 +54,25 @@ def remove_itens(bolsa, bolsa_nome, itens, itens_nome, joy_play, posicao_y_draw_
 			if bolsa_nome[-1] == "granada":
 				granada = Sprite("imagens/granada.png")
 				granada.set_position(joy_play.x, joy_play.y+joy_play.height-granada.height)
-				itens.append(granada)
-				itens_nome.append("granada")
+				for i in obstaculos:
+					joyplay1 = Sprite("imagens/joy-frente.png")
+					joyplay1.set_position(joy_play.x+50, joy_play.y)
+					joyplay2 = Sprite("imagens/joy-frente.png")
+					joyplay2.set_position(joy_play.x-50, joy_play.y)
+					if joyplay1.collided(i):
+						obstaculos.remove(i)
+						passou = 1
+					elif joyplay2.collided(i):
+						obstaculos.remove(i)
+						passou = 1
+				if passou == 0:
+					itens.append(granada)
+					itens_nome.append("granada")
 			bolsa.remove(bolsa[-1])
 			bolsa_nome.remove(bolsa_nome[-1])
 			posicao_y_draw_inventario = posicao_y_draw_inventario - 130
 			print(itens)
-			pygame.time.wait(200)
+			time.sleep(0.12)
 	return posicao_y_draw_inventario
 
 def adicionando_itens(itens, itens_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado):
@@ -85,7 +111,7 @@ def adicionando_itens(itens, itens_nome, bolsa, bolsa_nome, joy_play, posicao_y_
 				print(bolsa_nome)
 				posicao_y_draw_inventario = posicao_y_draw_inventario + 130
 				break
-				pygame.time.wait(150)
+				time.sleep(0.2)
 				posicao_y_draw_inventario = posicao_y_draw_inventario + 130
 	return posicao_y_draw_inventario
-			
+
