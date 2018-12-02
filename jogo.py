@@ -10,16 +10,22 @@ import inventario
 import movimento
 import draw_sprites
 import time
+import salvamento
 
 def jogo():
     obstaculos = []
-    itens = []
+    itens_chao = []
     itens_nome = []
     bolsa = []
     bolsa_nome = []
     f = 0
     soldado = []
-    soldado_ferido = []
+    soldado_morto = []
+    curativos_no_chao = []
+    curativos_disponiveis_nome = []
+    curativos_no_chao_nome = []
+    necessidade_soldados_nome = []
+    necessidade_soldados = []
     primeiro_nivel = 594
     segundo_nivel = 400
     terceiro_nivel = 208
@@ -55,11 +61,16 @@ def jogo():
     escada1.set_position(884, primeiro_nivel-escada1.height)
     escada2 = Sprite("imagens/escada1.png")
     escada2.set_position(1196, primeiro_nivel-escada2.height)
-    soldado = Sprite("imagens/soldado2.png")
-    soldado.set_position(882, segundo_nivel-soldado.height)
-    soldado_morto = Sprite("imagens/soldado-morto.png")
-    soldado_morto.set_position(1092, terceiro_nivel-soldado_morto.height)
-    joyfrente.set_position(248, segundo_nivel-soldado.height-joyfrente.height)
+    soldado1 = Sprite("imagens/soldado2.png")
+    soldado1.set_position(882, segundo_nivel-soldado1.height)
+    soldado2 = Sprite("imagens/soldado2.png")
+    soldado2.set_position(400, segundo_nivel-soldado1.height)
+    soldado_morto1 = Sprite("imagens/soldado-morto.png")
+    soldado_morto1.set_position(1092, terceiro_nivel-soldado_morto1.height)
+    soldado.append(soldado1)
+    soldado.append(soldado2)
+    soldado_morto.append(soldado_morto1)
+    joyfrente.set_position(248, segundo_nivel-soldado1.height-joyfrente.height)
     joy_play.set_position(300, 500)
     fogo.set_position(20, primeiro_nivel-fogo.height)
     joyesquerda.set_position(1168, terceiro_nivel-joyesquerda.height)
@@ -70,18 +81,26 @@ def jogo():
     seringa.set_position(956, primeiro_nivel-seringa.height)
     primeirossocorros.set_position(1001, primeiro_nivel-primeirossocorros.height)
     granada.set_position(438,segundo_nivel-granada.height)
+    for i in range(len(soldado)):
+        necessidade_soldados_nome.append("0")
+    curativos_no_chao.append(seringa)
+    curativos_no_chao.append(primeirossocorros)
+    curativos_no_chao_nome.append("seringa")
+    curativos_no_chao_nome.append("primeirossocorros")
+    curativos_disponiveis_nome.append("seringa")
+    curativos_disponiveis_nome.append("primeirossocorros")
     obstaculos.append(barrada)
     obstaculos.append(caixa)
     obstaculos.append(fogo)
-    itens.append(primeirossocorros)
+    itens_chao.append(primeirossocorros)
     itens_nome.append("primeiros_socorros")
-    itens.append(seringa)
+    itens_chao.append(seringa)
     itens_nome.append("seringa")
-    itens.append(chave)
+    itens_chao.append(chave)
     itens_nome.append("chave")
-    itens.append(granada)
+    itens_chao.append(granada)
     itens_nome.append("granada")
-    itens.append(dinamite)
+    itens_chao.append(dinamite)
     itens_nome.append("dinamite")
 
     joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
@@ -90,11 +109,12 @@ def jogo():
     SpeedX = 300
     SpeedY = 200
     final_do_mapa_direita = 1299
+    posicao_y_draw_curativo = -60
     posicao_y_draw_inventario = -60
     
     while True:
         tempo = time.time()
-        draw_sprites.draw(fundo, itens, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, joy_play, teclado)
+        draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa)
 
         #range da joy no segundo andar
         movimento.limite_mapa(primeiro_nivel, segundo_nivel, joy_play, joydireita, joyesquerda, teclado, final_do_mapa_direita, limite_esquerdo_segundo_nivel, SpeedX, janela)
@@ -104,17 +124,16 @@ def jogo():
         # aqui é a colisão com os obstáculos
         movimento.colisao_obstaculos(obstaculos, joy_play)
 
-        # adicionando itens na bolsa
-        posicao_y_draw_inventario = inventario.adicionando_itens(itens, itens_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado)
+        # adicionando itens_chao na bolsa
+        posicao_y_draw_inventario = inventario.adiciona_item_na_bolsa(itens_chao, itens_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado)
 
-        #removendo itens da bolsa
+        #removendo itens_chao da bolsa
         
-        posicao_y_draw_inventario = inventario.remove_itens(bolsa, bolsa_nome, itens, itens_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos)
+        posicao_y_draw_inventario = inventario.remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos)
 
-        #print(len(bolsa))
-        inventario.bolsa_draw(bolsa) 
+        #print(len(bolsa)) 
+        posicao_y_draw_curativo = salvamento.saber_item_salvar_soldado(soldado, teclado, joy_play, necessidade_soldados_nome, curativos_disponiveis_nome, necessidade_soldados, posicao_y_draw_curativo)
 
-        
         joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
         joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
 
