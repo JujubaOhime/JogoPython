@@ -17,6 +17,10 @@ def jogo():
     bolsa = []
     bolsa_nome = []
     f = 0
+
+    motivacao = 1
+    duracao_motivacao = 15
+
     primeiro_nivel = 594
     segundo_nivel = 400
     terceiro_nivel = 208
@@ -84,11 +88,16 @@ def jogo():
     joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
     joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
 
-    SpeedX = 300
-    SpeedY = 200
+    iniSpeedX = 300
+    iniSpeedY = 200
     final_do_mapa_direita = 1299
     posicao_y_draw_inventario = 0
     while True:
+        motivacao = motivacao - janela.delta_time()/duracao_motivacao
+        SpeedX = iniSpeedX * motivacao
+        SpeedY = iniSpeedY * motivacao
+
+
         draw_sprites.draw(fundo, itens, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, joy_play, teclado)
 
         #range da joy no segundo andar
@@ -113,9 +122,16 @@ def jogo():
         joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
         joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
 
+
+
+        if motivacao <= 0:
+            janela.draw_text("A guerra ganhou dessa vez", 0, 0, 36, (255, 255, 0), "Arial", True, False)
+            pygame.time.wait(3000)
+            return
+
+
         if teclado.key_pressed("ESC"):
             pygame.time.wait(150)
             return
             
         janela.update()
-        
