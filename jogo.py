@@ -53,21 +53,15 @@ def jogo():
     mochila = Sprite("imagens/bolsa.png")
     primeirossocorros = Sprite("imagens/primeiros-socorros.png")
 
-    coracao1 = Sprite("imagens/heart_1.png")
-    coracao1.set_position(1300 - coracao1.width, 700)
-    motiv_interface.append(coracao1)
-    coracao2 = Sprite("imagens/heart_1.png")
-    coracao2.set_position(1300 - 2 * coracao2.width, 700)
-    motiv_interface.append(coracao2)
-    coracao3 = Sprite("imagens/heart_1.png")
-    coracao3.set_position(1300 - 3 * coracao3.width, 700)
-    motiv_interface.append(coracao3)
-    coracao4 = Sprite("imagens/heart_1.png")
-    coracao4.set_position(1300 - 4 * coracao4.width, 700)
-    motiv_interface.append(coracao4)
-    coracao5 = Sprite("imagens/heart_1.png")
-    coracao5.set_position(1300 - 5 * coracao5.width, 700)
-    motiv_interface.append(coracao5)
+
+    for i in range(5):
+        coracao_vivo = Sprite("imagens/heart_1.png")
+        coracao_morto = Sprite("imagens/heart_2.png")
+        coracao_vivo.set_position(janela.width/2 - 2.5 * coracao_vivo.width + i * coracao_vivo.width, 50)
+        motiv_interface.append(coracao_vivo)
+        coracao_morto.set_position(janela.width/2 - 2.5 * coracao_morto.width + i * coracao_morto.width, 50)
+        motiv_interface.append(coracao_morto)
+
 
     joydireita.set_total_duration(400)
     joyesquerda.set_total_duration(400)
@@ -139,7 +133,7 @@ def jogo():
             tempo_inicial = tempo_inicial + 1
             motivacao = motivacao - 1
 
-        draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, coracao1, coracao2, coracao3, coracao4, coracao5, motiv_interface, motivacao, duracao_motivacao)
+        draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
         
         SpeedX = iniSpeedX * motivacao/duracao_motivacao
         SpeedY = iniSpeedY * motivacao/duracao_motivacao
@@ -169,7 +163,6 @@ def jogo():
 
         if motivacao <= 0:
             janela.draw_text("A guerra ganhou dessa vez", 0, 0, 36, (255, 255, 0))
-            coracao1.hide()
             janela.update()
             pygame.time.wait(4000)
             return
