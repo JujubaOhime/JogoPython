@@ -6,7 +6,7 @@ from PPlay.mouse import*
 from PPlay.sound import*
 import random
 
-def draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa):
+def draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao):
     fundo.draw()
     if(teclado.key_pressed("LEFT") or teclado.key_pressed("RIGHT")):
         joy_play.hide()
@@ -27,3 +27,10 @@ def draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, solda
     escada2.draw()
     mochila.draw()
     joy_play.draw()
+
+    for i in range(5):
+        if duracao_motivacao/5 * i >= motivacao:
+            motiv_interface[2 * i + 1].draw()
+        else:
+            motiv_interface[2 * i].draw()
+

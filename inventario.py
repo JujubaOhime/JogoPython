@@ -160,22 +160,34 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 			time.sleep(0.12)
 	return posicao_y_draw_inventario, posicao_y_draw_curativo, motivacao
 
-def adiciona_item_na_bolsa(itens_chao, itens_chao_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado):
+def adiciona_item_na_bolsa(itens_chao, itens_chao_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado, motivacao, duracao_motivacao):
 	for i in itens_chao:
 		if teclado.key_pressed('SPACE'):
 			if joy_play.collided(i):
 				posicao = itens_chao.index(i)
 				if(itens_chao_nome[posicao] == "primeiros_socorros"):
+					if motivacao <= duracao_motivacao*5/6:
+						motivacao = motivacao + duracao_motivacao/6
+					else:
+						motivacao = duracao_motivacao
 					primeiros_socorros_grande = Sprite("imagens/primeiros-socorros-grande.png")
 					primeiros_socorros_grande.set_position(20, primeiros_socorros_grande.height + posicao_y_draw_inventario )
 					bolsa.append(primeiros_socorros_grande)
 					bolsa_nome.append("primeiros_socorros")
 				if(itens_chao_nome[posicao] == "seringa"):
+					if motivacao <= duracao_motivacao*5/6:
+						motivacao = motivacao + duracao_motivacao/6
+					else:
+						motivacao = duracao_motivacao
 					seringa_grande = Sprite("imagens/seringa-grande.png")
 					seringa_grande.set_position(20, seringa_grande.height + posicao_y_draw_inventario )
 					bolsa.append(seringa_grande)
 					bolsa_nome.append("seringa")
 				if(itens_chao_nome[posicao] == "atadura"):
+					if motivacao <= duracao_motivacao*5/6:
+						motivacao = motivacao + duracao_motivacao/6
+					else:
+						motivacao = duracao_motivacao
 					atadura_grande = Sprite("imagens/atadura-grande.png")
 					atadura_grande.set_position(20, atadura_grande.height + posicao_y_draw_inventario )
 					bolsa.append(atadura_grande)
@@ -201,5 +213,5 @@ def adiciona_item_na_bolsa(itens_chao, itens_chao_nome, bolsa, bolsa_nome, joy_p
 				break
 				time.sleep(0.2)
 				posicao_y_draw_inventario = posicao_y_draw_inventario + 130
-	return posicao_y_draw_inventario
+	return posicao_y_draw_inventario, motivacao
 
