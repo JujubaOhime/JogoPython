@@ -140,7 +140,7 @@ def jogo():
 
         #removendo itens_chao da bolsa
         
-        posicao_y_draw_inventario, posicao_y_draw_curativo = inventario.remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos, soldado, necessidade_soldados_nome, necessidade_soldados, posicao_y_draw_curativo)
+        posicao_y_draw_inventario, posicao_y_draw_curativo, motivacao = inventario.remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos, soldado, necessidade_soldados_nome, necessidade_soldados, posicao_y_draw_curativo, motivacao, duracao_motivacazo)
 
         #print(len(bolsa)) 
         posicao_y_draw_curativo = salvamento.saber_item_salvar_soldado(soldado, teclado, joy_play, necessidade_soldados_nome, curativos_disponiveis_nome, necessidade_soldados, posicao_y_draw_curativo)
