@@ -120,6 +120,40 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					atadura.set_position(joy_play.x, joy_play.y+joy_play.height-atadura.height)
 					itens_chao.append(atadura)
 					itens_chao_nome.append("atadura")
+			elif bolsa_nome[-1] == "pilula":
+				for i in soldado:
+					posicao = soldado.index(i)
+					joyplay1 = Sprite("imagens/joy-frente.png")
+					joyplay1.set_position(joy_play.x+50, joy_play.y)
+					joyplay2 = Sprite("imagens/joy-frente.png")
+					joyplay2.set_position(joy_play.x-50, joy_play.y)
+					if necessidade_soldados_nome[posicao] == "pilula":
+						if joyplay1.collided(i):
+							soldado.remove(i)
+							if motivacao <= duracao_motivacao*2/3:
+								motivacao = motivacao + duracao_motivacao/3
+							else:
+								motivacao = duracao_motivacao
+							necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
+							passou = 1
+							if len(necessidade_soldados) == 1:
+								necessidade_soldados.remove(necessidade_soldados[-1])
+							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
+						elif joyplay2.collided(i):
+							soldado.remove(i)
+							if motivacao <= duracao_motivacao*2/3:
+								motivacao = motivacao + duracao_motivacao/3
+							else:
+								motivacao = duracao_motivacao
+							passou = 1
+							if len(necessidade_soldados) == 1:
+								necessidade_soldados.remove(necessidade_soldados[-1])
+							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
+				if passou == 0:
+					pilula = Sprite("imagens/pilula.png")
+					pilula.set_position(joy_play.x, joy_play.y+joy_play.height-pilula.height)
+					itens_chao.append(pilula)
+					itens_chao_nome.append("pilula")
 			elif bolsa_nome[-1] == "primeiros_socorros":
 				for i in soldado:
 					posicao = soldado.index(i)
@@ -192,6 +226,15 @@ def adiciona_item_na_bolsa(itens_chao, itens_chao_nome, bolsa, bolsa_nome, joy_p
 					atadura_grande.set_position(20, atadura_grande.height + posicao_y_draw_inventario )
 					bolsa.append(atadura_grande)
 					bolsa_nome.append("atadura")
+				if(itens_chao_nome[posicao] == "pilula"):
+					if motivacao <= duracao_motivacao*5/6:
+						motivacao = motivacao + duracao_motivacao/6
+					else:
+						motivacao = duracao_motivacao
+					pilula_grande = Sprite("imagens/pilula-grande.png")
+					pilula_grande.set_position(20, pilula_grande.height + posicao_y_draw_inventario )
+					bolsa.append(pilula_grande)
+					bolsa_nome.append("pilula")
 				if(itens_chao_nome[posicao] == "chave"):
 					chave_grande = Sprite("imagens/chave-grande.png")
 					chave_grande.set_position(20, chave_grande.height + posicao_y_draw_inventario )

@@ -12,7 +12,6 @@ def saber_item_salvar_soldado(soldado, teclado, joy_play, necessidade_soldados_n
             if joy_play.collided(i):
                 posicao = soldado.index(i)
                 if necessidade_soldados_nome[posicao] == "0":
-                    
                     curativo_aleatorio = random.randint(0, len(curativos_disponiveis_nome)-1)
                     if len(necessidade_soldados) == 1:
                             necessidade_soldados.remove(necessidade_soldados[-1])
@@ -36,6 +35,12 @@ def saber_item_salvar_soldado(soldado, teclado, joy_play, necessidade_soldados_n
                         curativo_aleatorio = Sprite("imagens/atadura-grande.png")
                         curativo_aleatorio.set_position(1170, curativo_aleatorio.height + posicao_y_draw_curativo )
                         necessidade_soldados.append(curativo_aleatorio)
+                    elif curativos_disponiveis_nome[curativo_aleatorio] == "pilula":
+                        curativos_disponiveis_nome.remove(curativos_disponiveis_nome[curativo_aleatorio])
+                        necessidade_soldados_nome[posicao] = "pilula"
+                        curativo_aleatorio = Sprite("imagens/pilula-grande.png")
+                        curativo_aleatorio.set_position(1170, curativo_aleatorio.height + posicao_y_draw_curativo )
+                        necessidade_soldados.append(curativo_aleatorio)
                 elif necessidade_soldados_nome[posicao] != '0':
                     if len(necessidade_soldados) == 1:
                         necessidade_soldados.remove(necessidade_soldados[-1])
@@ -52,11 +57,16 @@ def saber_item_salvar_soldado(soldado, teclado, joy_play, necessidade_soldados_n
                         curativo_aleatorio = Sprite("imagens/atadura-grande.png")
                         curativo_aleatorio.set_position(1170, curativo_aleatorio.height + posicao_y_draw_curativo )
                         necessidade_soldados.append(curativo_aleatorio)
+                    elif necessidade_soldados_nome[posicao] == "pilula":
+                        curativo_aleatorio = Sprite("imagens/pilula-grande.png")
+                        curativo_aleatorio.set_position(1170, curativo_aleatorio.height + posicao_y_draw_curativo )
+                        necessidade_soldados.append(curativo_aleatorio)
+                #posicao_y_draw_curativo = posicao_y_draw_curativo + 130
                 posicao_y_draw_curativo = posicao_y_draw_curativo + 130
                 time.sleep(0.2)
     return posicao_y_draw_curativo
 
-def salvamento(teclado, posicao_y_draw_inventario, bolsa, bolsa_nome, soldado,joy_play, itens_chao, itens_chao_nome, necessidade_soldados_nome):
+'''def salvamento(teclado, posicao_y_draw_inventario, bolsa, bolsa_nome, soldado,joy_play, itens_chao, itens_chao_nome, necessidade_soldados_nome):
     if teclado.key_pressed('q'):
         passou = 0
         if len(bolsa)>=1:
@@ -103,3 +113,4 @@ def salvamento(teclado, posicao_y_draw_inventario, bolsa, bolsa_nome, soldado,jo
             posicao_y_draw_inventario = posicao_y_draw_inventario - 130
             time.sleep(0.12)
     return posicao_y_draw_inventario
+'''
