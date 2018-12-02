@@ -78,6 +78,7 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, po
 								motivacao = motivacao + duracao_motivacao/3
 							else:
 								motivacao = duracao_motivacao
+							necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
 							passou = 1
 							necessidade_soldados.remove(necessidade_soldados[-1])
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
@@ -110,6 +111,7 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, po
 							else:
 								motivacao = duracao_motivacao
 							passou = 1
+							necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
 							necessidade_soldados.remove(necessidade_soldados[-1])
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 						elif joyplay2.collided(i):
