@@ -122,7 +122,7 @@ def jogo():
             motivacao = motivacao - 1
 
         draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa)
-        print("motivacao é: {}".format(motivacao))
+        
         SpeedX = iniSpeedX * motivacao/duracao_motivacao
         SpeedY = iniSpeedY * motivacao/duracao_motivacao
 
@@ -149,7 +149,6 @@ def jogo():
         joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
 
 
-        print(motivacao)
         if motivacao <= 0:
             janela.draw_text("A guerra ganhou dessa vez", 0, 0, 36, (255, 255, 0))
             janela.update()
