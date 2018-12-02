@@ -15,7 +15,8 @@ def draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, solda
     for i in range(len(obstaculos)):
         obstaculos[i].draw()
     for i in range(len(soldado)):
-        soldado[i].draw()
+        if not (soldado[i] == "-1"):
+            soldado[i].draw()
     for i in range(len(soldado_morto)):
         soldado_morto[i].draw()
     for i in range(len(necessidade_soldados)):

@@ -54,6 +54,8 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					itens_chao_nome.append("granada")
 			elif bolsa_nome[-1] == "seringa":
 				for i in soldado:
+					if i == "-1":
+						continue
 					posicao = soldado.index(i)
 					joyplay1 = Sprite("imagens/joy-frente.png")
 					joyplay1.set_position(joy_play.x+50, joy_play.y)
@@ -61,18 +63,21 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					joyplay2.set_position(joy_play.x-50, joy_play.y)
 					if necessidade_soldados_nome[posicao] == "seringa":
 						if joyplay1.collided(i):
-							soldado.remove(i)
+							soldado[posicao] = "-1"
+							#soldado.remove(i)
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
 								motivacao = duracao_motivacao
-							necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
+							#necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
+							necessidade_soldados_nome[posicao] = "0"
 							passou = 1
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 						elif joyplay2.collided(i):
-							soldado.remove(i)
+							#soldado.remove(i)
+							soldado[posicao] = "-1"
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
@@ -88,6 +93,8 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					itens_chao_nome.append("seringa")
 			elif bolsa_nome[-1] == "atadura":
 				for i in soldado:
+					if i == "-1":
+						continue
 					posicao = soldado.index(i)
 					joyplay1 = Sprite("imagens/joy-frente.png")
 					joyplay1.set_position(joy_play.x+50, joy_play.y)
@@ -95,18 +102,21 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					joyplay2.set_position(joy_play.x-50, joy_play.y)
 					if necessidade_soldados_nome[posicao] == "atadura":
 						if joyplay1.collided(i):
-							soldado.remove(i)
+							#soldado.remove(i)
+							soldado[posicao] = "-1"
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
 								motivacao = duracao_motivacao
-							necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
+							#necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
+							necessidade_soldados_nome[posicao] = "0"
 							passou = 1
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 						elif joyplay2.collided(i):
-							soldado.remove(i)
+							soldado[posicao] = "-1"
+							#soldado.remove(i)
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
@@ -122,6 +132,8 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					itens_chao_nome.append("atadura")
 			elif bolsa_nome[-1] == "pilula":
 				for i in soldado:
+					if i == "-1":
+						continue
 					posicao = soldado.index(i)
 					joyplay1 = Sprite("imagens/joy-frente.png")
 					joyplay1.set_position(joy_play.x+50, joy_play.y)
@@ -129,18 +141,21 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					joyplay2.set_position(joy_play.x-50, joy_play.y)
 					if necessidade_soldados_nome[posicao] == "pilula":
 						if joyplay1.collided(i):
-							soldado.remove(i)
+							#soldado.remove(i)
+							soldado[posicao] = "-1"
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
 								motivacao = duracao_motivacao
-							necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
+							#necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
+							necessidade_soldados_nome[posicao] = "0"
 							passou = 1
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 						elif joyplay2.collided(i):
-							soldado.remove(i)
+							#soldado.remove(i)
+							soldado[posicao] = "-1"
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
@@ -156,6 +171,8 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					itens_chao_nome.append("pilula")
 			elif bolsa_nome[-1] == "primeiros_socorros":
 				for i in soldado:
+					if i == "-1":
+						continue
 					posicao = soldado.index(i)
 					joyplay1 = Sprite("imagens/joy-frente.png")
 					joyplay1.set_position(joy_play.x+50, joy_play.y)
@@ -163,18 +180,21 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					joyplay2.set_position(joy_play.x-50, joy_play.y)
 					if necessidade_soldados_nome[posicao] == "primeirossocorros":
 						if joyplay1.collided(i):
-							soldado.remove(i)
+							#soldado.remove(i)
+							soldado[posicao] = "-1"
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
 								motivacao = duracao_motivacao
 							passou = 1
-							necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
+							#necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
+							necessidade_soldados_nome[posicao] = "0"
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 						elif joyplay2.collided(i):
-							soldado.remove(i)
+							#soldado.remove(i)
+							soldado[posicao] = "-1"
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
@@ -191,7 +211,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 			bolsa.remove(bolsa[-1])
 			bolsa_nome.remove(bolsa_nome[-1])
 			posicao_y_draw_inventario = posicao_y_draw_inventario - 130
-			time.sleep(0.12)
+			print("Soldado: ",soldado)
+			print("necessidade soldados nome:", necessidade_soldados_nome)
+			time.sleep(0.2)
 	return posicao_y_draw_inventario, posicao_y_draw_curativo, motivacao
 
 def adiciona_item_na_bolsa(itens_chao, itens_chao_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado, motivacao, duracao_motivacao):
