@@ -48,3 +48,53 @@ def saber_item_salvar_soldado(soldado, teclado, joy_play, necessidade_soldados_n
                 posicao_y_draw_curativo = posicao_y_draw_curativo + 130
                 time.sleep(0.2)
     return posicao_y_draw_curativo
+
+def salvamento(teclado, posicao_y_draw_inventario, bolsa, bolsa_nome, soldado,joy_play, itens_chao, itens_nome, necessidade_soldados_nome):
+    if teclado.key_pressed('q'):
+        passou = 0
+        print('entrou')
+        if len(bolsa)>=1:
+            if bolsa_nome[-1] == "seringa":
+                for i in soldado:
+                    posicao = soldado.index(i)
+                    joyplay1 = Sprite("imagens/joy-frente.png")
+                    joyplay1.set_position(joy_play.x+50, joy_play.y)
+                    joyplay2 = Sprite("imagens/joy-frente.png")
+                    joyplay2.set_position(joy_play.x-50, joy_play.y)
+                    if necessidade_soldados_nome[posicao] == "seringa":
+                        if joyplay1.collided(i):
+                            soldado.remove(i)
+                            passou = 1
+                        elif joyplay2.collided(i):
+                            soldado.remove(i)
+                            passou = 1
+                if passou == 0:
+                    seringa = Sprite("imagens/seringa.png")
+                    seringa.set_position(joy_play.x, joy_play.y+joy_play.height-seringa.height)
+                    itens_chao.append(seringa)
+                    itens_nome.append("seringa")
+            if bolsa_nome[-1] == "primeiros_socorros":
+                for i in soldado:
+                    posicao = soldado.index(i)
+                    joyplay1 = Sprite("imagens/joy-frente.png")
+                    joyplay1.set_position(joy_play.x+50, joy_play.y)
+                    joyplay2 = Sprite("imagens/joy-frente.png")
+                    joyplay2.set_position(joy_play.x-50, joy_play.y)
+                    if necessidade_soldados_nome[posicao] == "primeirossocorros":
+                        if joyplay1.collided(i):
+                            soldado.remove(i)
+                            passou = 1
+                        elif joyplay2.collided(i):
+                            soldado.remove(i)
+                            passou = 1
+                if passou == 0:
+                    primeirossocorros = Sprite("imagens/primeiros-socorros.png")
+                    primeirossocorros.set_position(joy_play.x, joy_play.y+joy_play.height-primeirossocorros.height)
+                    itens_chao.append(primeirossocorros)
+                    itens_nome.append("primeiros_socorros")
+            bolsa.remove(bolsa[-1])
+            bolsa_nome.remove(bolsa_nome[-1])
+            posicao_y_draw_inventario = posicao_y_draw_inventario - 130
+            print(itens_chao)
+            time.sleep(0.12)
+    return posicao_y_draw_inventario

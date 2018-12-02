@@ -9,17 +9,17 @@ import time
 
 
 
-def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos):
+def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos, soldado, necessidade_soldados_nome, necessidade_soldados, posicao_y_draw_curativo):
 	if teclado.key_pressed('q'):
 		f = 1
 		passou = 0
 		print(posicao_y_draw_inventario)
 		if len(bolsa)>=1 and f==1:
-			if bolsa_nome[-1] == "seringa":
-				seringa = Sprite("imagens/seringa.png")
-				seringa.set_position(joy_play.x, joy_play.y+joy_play.height-seringa.height)
-				itens_chao.append(seringa)
-				itens_nome.append("seringa")
+			#if bolsa_nome[-1] == "seringa":
+			#	seringa = Sprite("imagens/seringa.png")
+			#	seringa.set_position(joy_play.x, joy_play.y+joy_play.height-seringa.height)
+			#	itens_chao.append(seringa)
+			#	itens_nome.append("seringa")
 			if bolsa_nome[-1] == "dinamite":
 				dinamite = Sprite("imagens/dinamite.png")
 				dinamite.set_position(joy_play.x, joy_play.y+joy_play.height-dinamite.height)
@@ -37,11 +37,11 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, po
 				if passou == 0:
 					itens_chao.append(dinamite)
 					itens_nome.append("dinamite")
-			if bolsa_nome[-1] == "primeiros_socorros":
-				primeirossocorros = Sprite("imagens/primeiros-socorros.png")
-				primeirossocorros.set_position(joy_play.x, joy_play.y+joy_play.height-primeirossocorros.height)
-				itens_chao.append(primeirossocorros)
-				itens_nome.append("primeiros_socorros")
+			#if bolsa_nome[-1] == "primeiros_socorros":
+			#	primeirossocorros = Sprite("imagens/primeiros-socorros.png")
+			#	primeirossocorros.set_position(joy_play.x, joy_play.y+joy_play.height-primeirossocorros.height)
+			#	itens_chao.append(primeirossocorros)
+			#	itens_nome.append("primeiros_socorros")
 			if bolsa_nome[-1] == "chave":
 				chave = Sprite("imagens/chave.png")
 				chave.set_position(joy_play.x, joy_play.y+joy_play.height-chave.height)
@@ -64,12 +64,58 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, po
 				if passou == 0:
 					itens_chao.append(granada)
 					itens_nome.append("granada")
+			if bolsa_nome[-1] == "seringa":
+				for i in soldado:
+					posicao = soldado.index(i)
+					joyplay1 = Sprite("imagens/joy-frente.png")
+					joyplay1.set_position(joy_play.x+50, joy_play.y)
+					joyplay2 = Sprite("imagens/joy-frente.png")
+					joyplay2.set_position(joy_play.x-50, joy_play.y)
+					if necessidade_soldados_nome[posicao] == "seringa":
+						if joyplay1.collided(i):
+							soldado.remove(i)
+							passou = 1
+							necessidade_soldados.remove(necessidade_soldados[-1])
+							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
+						elif joyplay2.collided(i):
+							soldado.remove(i)
+							passou = 1
+							necessidade_soldados.remove(necessidade_soldados[-1])
+							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
+				if passou == 0:
+					seringa = Sprite("imagens/seringa.png")
+					seringa.set_position(joy_play.x, joy_play.y+joy_play.height-seringa.height)
+					itens_chao.append(seringa)
+					itens_nome.append("seringa")
+			if bolsa_nome[-1] == "primeiros_socorros":
+				for i in soldado:
+					posicao = soldado.index(i)
+					joyplay1 = Sprite("imagens/joy-frente.png")
+					joyplay1.set_position(joy_play.x+50, joy_play.y)
+					joyplay2 = Sprite("imagens/joy-frente.png")
+					joyplay2.set_position(joy_play.x-50, joy_play.y)
+					if necessidade_soldados_nome[posicao] == "primeirossocorros":
+						if joyplay1.collided(i):
+							soldado.remove(i)
+							passou = 1
+							necessidade_soldados.remove(necessidade_soldados[-1])
+							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
+						elif joyplay2.collided(i):
+							soldado.remove(i)
+							passou = 1
+							necessidade_soldados.remove(necessidade_soldados[-1])
+							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
+				if passou == 0:
+					primeirossocorros = Sprite("imagens/primeiros-socorros.png")
+					primeirossocorros.set_position(joy_play.x, joy_play.y+joy_play.height-primeirossocorros.height)
+					itens_chao.append(primeirossocorros)
+					itens_nome.append("primeiros_socorros")
 			bolsa.remove(bolsa[-1])
 			bolsa_nome.remove(bolsa_nome[-1])
 			posicao_y_draw_inventario = posicao_y_draw_inventario - 130
 			print(itens_chao)
 			time.sleep(0.12)
-	return posicao_y_draw_inventario
+	return posicao_y_draw_inventario, posicao_y_draw_curativo
 
 def adiciona_item_na_bolsa(itens_chao, itens_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado):
 	for i in itens_chao:
