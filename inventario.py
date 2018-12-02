@@ -133,7 +133,7 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, po
 			time.sleep(0.12)
 	return posicao_y_draw_inventario, posicao_y_draw_curativo, motivacao
 
-def adiciona_item_na_bolsa(itens_chao, itens_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado):
+def adiciona_item_na_bolsa(itens_chao, itens_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado, motivacao, duracao_motivacao):
 	for i in itens_chao:
 		if teclado.key_pressed('SPACE'):
 			if joy_play.collided(i):
@@ -143,11 +143,19 @@ def adiciona_item_na_bolsa(itens_chao, itens_nome, bolsa, bolsa_nome, joy_play, 
 					primeiros_socorros_grande.set_position(20, primeiros_socorros_grande.height + posicao_y_draw_inventario )
 					bolsa.append(primeiros_socorros_grande)
 					bolsa_nome.append("primeiros_socorros")
+					if motivacao <= duracao_motivacao*5/6:
+						motivacao = motivacao + duracao_motivacao/6
+					else:
+						motivacao = duracao_motivacao
 				if(itens_nome[posicao] == "seringa"):
 					seringa_grande = Sprite("imagens/seringa-grande.png")
 					seringa_grande.set_position(20, seringa_grande.height + posicao_y_draw_inventario )
 					bolsa.append(seringa_grande)
 					bolsa_nome.append("seringa")
+					if motivacao <= duracao_motivacao*5/6:
+						motivacao = motivacao + duracao_motivacao/6
+					else:
+						motivacao = duracao_motivacao
 				if(itens_nome[posicao] == "chave"):
 					chave_grande = Sprite("imagens/chave-grande.png")
 					chave_grande.set_position(20, chave_grande.height + posicao_y_draw_inventario )
@@ -171,5 +179,5 @@ def adiciona_item_na_bolsa(itens_chao, itens_nome, bolsa, bolsa_nome, joy_play, 
 				break
 				time.sleep(0.2)
 				posicao_y_draw_inventario = posicao_y_draw_inventario + 130
-	return posicao_y_draw_inventario
+	return posicao_y_draw_inventario, motivacao
 

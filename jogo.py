@@ -29,6 +29,7 @@ def jogo():
 
     motivacao = 20
     duracao_motivacao = motivacao
+    motiv_interface = []
 
     primeiro_nivel = 594
     segundo_nivel = 400
@@ -51,6 +52,23 @@ def jogo():
     barrada = Sprite("imagens/barrada1.png")
     mochila = Sprite("imagens/bolsa.png")
     primeirossocorros = Sprite("imagens/primeiros-socorros.png")
+
+    coracao1 = Sprite("imagens/heart_1.png")
+    coracao1.set_position(1300 - coracao1.width, 700)
+    motiv_interface.append(coracao1)
+    coracao2 = Sprite("imagens/heart_1.png")
+    coracao2.set_position(1300 - 2 * coracao2.width, 700)
+    motiv_interface.append(coracao2)
+    coracao3 = Sprite("imagens/heart_1.png")
+    coracao3.set_position(1300 - 3 * coracao3.width, 700)
+    motiv_interface.append(coracao3)
+    coracao4 = Sprite("imagens/heart_1.png")
+    coracao4.set_position(1300 - 4 * coracao4.width, 700)
+    motiv_interface.append(coracao4)
+    coracao5 = Sprite("imagens/heart_1.png")
+    coracao5.set_position(1300 - 5 * coracao5.width, 700)
+    motiv_interface.append(coracao5)
+
     joydireita.set_total_duration(400)
     joyesquerda.set_total_duration(400)
     joysubindo.set_total_duration(400)
@@ -121,7 +139,7 @@ def jogo():
             tempo_inicial = tempo_inicial + 1
             motivacao = motivacao - 1
 
-        draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa)
+        draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, coracao1, coracao2, coracao3, coracao4, coracao5, motiv_interface, motivacao, duracao_motivacao)
         
         SpeedX = iniSpeedX * motivacao/duracao_motivacao
         SpeedY = iniSpeedY * motivacao/duracao_motivacao
@@ -136,11 +154,11 @@ def jogo():
         movimento.colisao_obstaculos(obstaculos, joy_play)
 
         # adicionando itens_chao na bolsa
-        posicao_y_draw_inventario = inventario.adiciona_item_na_bolsa(itens_chao, itens_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado)
+        posicao_y_draw_inventario, motivacao = inventario.adiciona_item_na_bolsa(itens_chao, itens_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado, motivacao, duracao_motivacao)
 
         #removendo itens_chao da bolsa
         
-        posicao_y_draw_inventario, posicao_y_draw_curativo, motivacao = inventario.remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos, soldado, necessidade_soldados_nome, necessidade_soldados, posicao_y_draw_curativo, motivacao, duracao_motivacazo)
+        posicao_y_draw_inventario, posicao_y_draw_curativo, motivacao = inventario.remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos, soldado, necessidade_soldados_nome, necessidade_soldados, posicao_y_draw_curativo, motivacao, duracao_motivacao)
 
         #print(len(bolsa)) 
         posicao_y_draw_curativo = salvamento.saber_item_salvar_soldado(soldado, teclado, joy_play, necessidade_soldados_nome, curativos_disponiveis_nome, necessidade_soldados, posicao_y_draw_curativo)
@@ -151,6 +169,7 @@ def jogo():
 
         if motivacao <= 0:
             janela.draw_text("A guerra ganhou dessa vez", 0, 0, 36, (255, 255, 0))
+            coracao1.hide()
             janela.update()
             pygame.time.wait(4000)
             return
