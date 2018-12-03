@@ -15,6 +15,7 @@ import salvamento
 
 
 def jogo3():
+    pygame.time.wait(200)
     obstaculos = []
     itens_chao = []
     itens_chao_nome = []
