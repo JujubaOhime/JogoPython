@@ -5,6 +5,8 @@ from PPlay.gameobject import *
 from PPlay.mouse import *
 from PPlay.sound import *
 
+import sys
+
 import jogo
 import rank
 import inventario
@@ -63,7 +65,7 @@ def menu():
         if mouse.is_over_object(sair):
             sair_hover.draw()
             if mouse.is_button_pressed(1):
-                break
+                sys.exit()
         else:
             sair.draw()
 
