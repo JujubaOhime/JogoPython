@@ -174,7 +174,8 @@ def jogo3():
 
         if teclado.key_pressed("ESC"):
             pygame.time.wait(150)
-            #menu.menu()
+            import menu
+            menu.menu()
             return
 
         outra_fase = 1
@@ -185,7 +186,8 @@ def jogo3():
             janela.draw_text("Parabéns, você ajudou os soldados a sobreviverem à guerra", 0, 0, 36, (255, 255, 0))
             janela.update()
             pygame.time.wait(4000)
-            #menu.menu()
+            import menu
+            menu.menu()
             return
            
         janela.update()

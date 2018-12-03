@@ -11,7 +11,6 @@ import movimento
 import draw_sprites
 import time
 import salvamento
-import jogo3
 
 
 def jogo2():
@@ -178,13 +177,15 @@ def jogo2():
 
         if teclado.key_pressed("ESC"):
             pygame.time.wait(150)
-            return
+            import menu
+            menu.menu()
 
         outra_fase = 1
         for i in range(len(soldado)):
             if soldado[i] != "-1":
                 outra_fase = 0
         if outra_fase == 1:
+            import jogo3
             jogo3.jogo3()
 
 
