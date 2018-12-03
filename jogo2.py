@@ -13,6 +13,7 @@ import time
 import salvamento
 import jogo3
 
+
 def jogo2():
     obstaculos = []
     itens_chao = []
