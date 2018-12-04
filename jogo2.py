@@ -115,7 +115,7 @@ def jogo2():
     curativos_disponiveis_nome.append("atadura")
     obstaculos.append(barrada)
     obstaculos.append(caixa)
-    obstaculos.append(fogo)
+    #obstaculos.append(fogo)
     itens_chao.append(primeirossocorros)
     itens_chao_nome.append("primeiros_socorros")
     itens_chao.append(seringa)

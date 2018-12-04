@@ -405,8 +405,6 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 			bolsa.remove(bolsa[-1])
 			bolsa_nome.remove(bolsa_nome[-1])
 			posicao_y_draw_inventario = posicao_y_draw_inventario - 130
-			print("Soldado: ",soldado)
-			print("necessidade soldados nome:", necessidade_soldados_nome)
 		#time.sleep(1)
 		#while(1):
 			#pygame.time.wait(200)

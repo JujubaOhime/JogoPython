@@ -13,9 +13,6 @@ def saber_item_salvar_soldado(soldado, teclado, joy_play, necessidade_soldados_n
                 continue
             if joy_play.collided(i):
                 posicao = soldado.index(i)
-                print("posicao é:", posicao)
-                #print(posicao)
-                print(necessidade_soldados_nome[posicao])
                 if necessidade_soldados_nome[posicao] == "0":
                     curativo_aleatorio = random.randint(0, len(curativos_disponiveis_nome)-1)
                     if len(necessidade_soldados) == 1:
@@ -68,8 +65,6 @@ def saber_item_salvar_soldado(soldado, teclado, joy_play, necessidade_soldados_n
                         necessidade_soldados.append(curativo_aleatorio)
                 #posicao_y_draw_curativo = posicao_y_draw_curativo + 130
                 posicao_y_draw_curativo = posicao_y_draw_curativo + 130
-                print("curativos disponiveis nome:")
-                print(curativos_disponiveis_nome)
                 time.sleep(0.2)
     return posicao_y_draw_curativo
 
