@@ -30,7 +30,7 @@ def jogo3():
     necessidade_soldados_nome = []
     necessidade_soldados = []
 
-    motivacao = 700
+    motivacao = 16
     duracao_motivacao = motivacao
     motiv_interface = []
 
