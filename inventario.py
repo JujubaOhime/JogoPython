@@ -4,14 +4,16 @@ from PPlay.sprite import*
 from PPlay.gameobject import*
 from PPlay.mouse import*
 from PPlay.sound import*
+from PPlay.keyboard import*
 import random
 import time
+import draw_sprites
 
 
-
-def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos, soldado, necessidade_soldados_nome, necessidade_soldados, posicao_y_draw_curativo, motivacao, duracao_motivacao):
+def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos, soldado, necessidade_soldados_nome, necessidade_soldados, posicao_y_draw_curativo, motivacao, duracao_motivacao, janela, fundo, escada, escada1, escada2, soldado_morto, mochila, motiv_interface):
 	if teclado.key_pressed('q'):
 		passou = 0
+		animacao = 0
 		if len(bolsa)>=1:
 			if bolsa_nome[-1] == "dinamite":
 				dinamite = Sprite("imagens/dinamite.png")
@@ -23,10 +25,42 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					joyplay2.set_position(joy_play.x-50, joy_play.y)
 					if joyplay1.collided(i):
 						obstaculos.remove(i)
+						posicaox = i.x 
+						posicaoy = i.y
+						explosao = Sprite("imagens/explosion.png", 10)
+						explosao.set_total_duration(1200)
+						explosao.set_position(posicaox, posicaoy);
+						tempo_inicio = time.time()
+						while(1):
+							draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+							explosao.draw()
+							explosao.update()
+							
+							if (time.time() > tempo_inicio + 1):
+								break
+							janela.update()
+						explosao.set_loop(False)
 						passou = 1
+						animacao = 1
 					elif joyplay2.collided(i):
 						obstaculos.remove(i)
+						posicaox = i.x 
+						posicaoy = i.y
+						explosao = Sprite("imagens/explosion.png", 10)
+						explosao.set_total_duration(1200)
+						explosao.set_position(posicaox, posicaoy);
+						tempo_inicio = time.time()
+						while(1):
+							draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+							explosao.draw()
+							explosao.update()
+							
+							if (time.time() > tempo_inicio + 1):
+								break
+							janela.update()
+						explosao.set_loop(False)
 						passou = 1
+						animacao = 1
 				if passou == 0:
 					itens_chao.append(dinamite)
 					itens_chao_nome.append("dinamite")
@@ -45,10 +79,42 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					joyplay2.set_position(joy_play.x-50, joy_play.y)
 					if joyplay1.collided(i):
 						obstaculos.remove(i)
+						posicaox = i.x 
+						posicaoy = i.y
+						explosao = Sprite("imagens/explosion.png", 10)
+						explosao.set_total_duration(1200)
+						explosao.set_position(posicaox, posicaoy);
+						tempo_inicio = time.time()
+						while(1):
+							draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+							explosao.draw()
+							explosao.update()
+							
+							if (time.time() > tempo_inicio + 1):
+								break
+							janela.update()
+						explosao.set_loop(False)
 						passou = 1
+						animacao = 1
 					elif joyplay2.collided(i):
 						obstaculos.remove(i)
+						posicaox = i.x 
+						posicaoy = i.y
+						explosao = Sprite("imagens/explosion.png", 10)
+						explosao.set_total_duration(1200)
+						explosao.set_position(posicaox, posicaoy);
+						tempo_inicio = time.time()
+						while(1):
+							draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+							explosao.draw()
+							explosao.update()
+							
+							if (time.time() > tempo_inicio + 1):
+								break
+							janela.update()
+						explosao.set_loop(False)
 						passou = 1
+						animacao = 1
 				if passou == 0:
 					itens_chao.append(granada)
 					itens_chao_nome.append("granada")
@@ -74,6 +140,22 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 							passou = 1
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
+							posicaox = i.x 
+							posicaoy = i.y
+							healing = Sprite("imagens/healing.png", 9)
+							healing.set_total_duration(1200)
+							healing.set_position(posicaox, posicaoy + 20);
+							tempo_inicio = time.time()
+							while(1):
+								draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+								healing.draw()
+								healing.update()
+								if (time.time() > tempo_inicio + 1):
+									break
+								janela.update()
+							healing.set_loop(False)
+							passou = 1
+							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 						elif joyplay2.collided(i):
 							#soldado.remove(i)
@@ -85,6 +167,22 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 							passou = 1
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
+							posicaox = i.x 
+							posicaoy = i.y
+							healing = Sprite("imagens/healing.png", 9)
+							healing.set_total_duration(1200)
+							healing.set_position(posicaox, posicaoy + 20);
+							tempo_inicio = time.time()
+							while(1):
+								draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+								healing.draw()
+								healing.update()
+								if (time.time() > tempo_inicio + 1):
+									break
+								janela.update()
+							healing.set_loop(False)
+							passou = 1
+							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 				if passou == 0:
 					seringa = Sprite("imagens/seringa.png")
@@ -110,9 +208,24 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 								motivacao = duracao_motivacao
 							#necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
 							necessidade_soldados_nome[posicao] = "0"
-							passou = 1
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
+							posicaox = i.x 
+							posicaoy = i.y
+							healing = Sprite("imagens/healing.png", 9)
+							healing.set_total_duration(1200)
+							healing.set_position(posicaox, posicaoy + 20);
+							tempo_inicio = time.time()
+							while(1):
+								draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+								healing.draw()
+								healing.update()
+								if (time.time() > tempo_inicio + 1):
+									break
+								janela.update()
+							healing.set_loop(False)
+							passou = 1
+							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 						elif joyplay2.collided(i):
 							soldado[posicao] = "-1"
@@ -121,9 +234,24 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 								motivacao = motivacao + duracao_motivacao/3
 							else:
 								motivacao = duracao_motivacao
-							passou = 1
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
+							posicaox = i.x 
+							posicaoy = i.y
+							healing = Sprite("imagens/healing.png", 9)
+							healing.set_total_duration(1200)
+							healing.set_position(posicaox, posicaoy + 20);
+							tempo_inicio = time.time()
+							while(1):
+								draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+								healing.draw()
+								healing.update()
+								if (time.time() > tempo_inicio + 1):
+									break
+								janela.update()
+							healing.set_loop(False)
+							passou = 1
+							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 				if passou == 0:
 					atadura = Sprite("imagens/atadura.png")
@@ -149,9 +277,24 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 								motivacao = duracao_motivacao
 							#necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
 							necessidade_soldados_nome[posicao] = "0"
-							passou = 1
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
+							posicaox = i.x 
+							posicaoy = i.y
+							healing = Sprite("imagens/healing.png", 9)
+							healing.set_total_duration(1200)
+							healing.set_position(posicaox, posicaoy + 20);
+							tempo_inicio = time.time()
+							while(1):
+								draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+								healing.draw()
+								healing.update()
+								if (time.time() > tempo_inicio + 1):
+									break
+								janela.update()
+							healing.set_loop(False)
+							passou = 1
+							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 						elif joyplay2.collided(i):
 							#soldado.remove(i)
@@ -160,9 +303,24 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 								motivacao = motivacao + duracao_motivacao/3
 							else:
 								motivacao = duracao_motivacao
-							passou = 1
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
+							posicaox = i.x 
+							posicaoy = i.y
+							healing = Sprite("imagens/healing.png", 9)
+							healing.set_total_duration(1200)
+							healing.set_position(posicaox, posicaoy + 20);
+							tempo_inicio = time.time()
+							while(1):
+								draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+								healing.draw()
+								healing.update()
+								if (time.time() > tempo_inicio + 1):
+									break
+								janela.update()
+							healing.set_loop(False)
+							passou = 1
+							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 				if passou == 0:
 					pilula = Sprite("imagens/pilula.png")
@@ -186,11 +344,26 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 								motivacao = motivacao + duracao_motivacao/3
 							else:
 								motivacao = duracao_motivacao
-							passou = 1
 							#necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
 							necessidade_soldados_nome[posicao] = "0"
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
+							posicaox = i.x 
+							posicaoy = i.y
+							healing = Sprite("imagens/healing.png", 9)
+							healing.set_total_duration(1200)
+							healing.set_position(posicaox, posicaoy + 20);
+							tempo_inicio = time.time()
+							while(1):
+								draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+								healing.draw()
+								healing.update()
+								if (time.time() > tempo_inicio + 1):
+									break
+								janela.update()
+							healing.set_loop(False)
+							passou = 1
+							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 						elif joyplay2.collided(i):
 							#soldado.remove(i)
@@ -199,21 +372,45 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 								motivacao = motivacao + duracao_motivacao/3
 							else:
 								motivacao = duracao_motivacao
-							passou = 1
 							if len(necessidade_soldados) == 1:
 								necessidade_soldados.remove(necessidade_soldados[-1])
+							posicaox = i.x 
+							posicaoy = i.y
+							healing = Sprite("imagens/healing.png", 9)
+							healing.set_total_duration(1200)
+							healing.set_position(posicaox, posicaoy + 20);
+							tempo_inicio = time.time()
+							while(1):
+								draw_sprites.draw(fundo, itens_chao, obstaculos, escada, escada1, escada2, soldado, soldado_morto, mochila, necessidade_soldados, joy_play, teclado, bolsa, motiv_interface, motivacao, duracao_motivacao)
+								healing.draw()
+								healing.update()
+								if (time.time() > tempo_inicio + 1):
+									break
+								janela.update()
+							healing.set_loop(False)
+							passou = 1
+							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 				if passou == 0:
 					primeirossocorros = Sprite("imagens/primeiros-socorros.png")
 					primeirossocorros.set_position(joy_play.x, joy_play.y+joy_play.height-primeirossocorros.height)
 					itens_chao.append(primeirossocorros)
 					itens_chao_nome.append("primeiros_socorros")
+			if animacao == 0:
+				tempo_inicio = time.time()
+				while(1):
+					if (time.time() > tempo_inicio + 0.5):
+						break
+					janela.update()
 			bolsa.remove(bolsa[-1])
 			bolsa_nome.remove(bolsa_nome[-1])
 			posicao_y_draw_inventario = posicao_y_draw_inventario - 130
 			print("Soldado: ",soldado)
 			print("necessidade soldados nome:", necessidade_soldados_nome)
-			time.sleep(0.2)
+		#time.sleep(1)
+		#while(1):
+			#pygame.time.wait(200)
+			#break
 	return posicao_y_draw_inventario, posicao_y_draw_curativo, motivacao
 
 def adiciona_item_na_bolsa(itens_chao, itens_chao_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado, motivacao, duracao_motivacao):
