@@ -90,7 +90,7 @@ def subir_descer_escada_3(joy_play, joysubindo, primeiro_nivel, segundo_nivel, e
 		else:
 			joy_play.unhide()
 	elif (escada2.x - 15 < joy_play.x < escada2.x + 15):
-		if teclado.key_pressed("UP") and segundo_nivel - joy_play.height > joy_play.y > terceiro_nivel - joy_play.height:
+		if teclado.key_pressed("UP") and segundo_nivel + joy_play.height > joy_play.y > terceiro_nivel - joy_play.height:
 			joy_play.move_y(-SpeedY * janela.delta_time())
 			joysubindo.draw()
 			joysubindo.update()
