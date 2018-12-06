@@ -28,7 +28,7 @@ def jogo():
     necessidade_soldados_nome = []
     necessidade_soldados = []
 
-    motivacao = 16
+    motivacao = 20
     duracao_motivacao = motivacao
     motiv_interface = []
 
@@ -48,12 +48,10 @@ def jogo():
     #fogo = Sprite("imagens/fogo.png", 9)
     granada = Sprite("imagens/granada.png")
     dinamite = Sprite("imagens/dinamite.png")
-    seringa = Sprite("imagens/seringa.png")
     barrada = Sprite("imagens/barrada1.png")
     mochila = Sprite("imagens/bolsa.png")
     atadura = Sprite("imagens/atadura.png")
     pilula = Sprite("imagens/pilula.png")
-    primeirossocorros = Sprite("imagens/primeiros-socorros.png")
 
 
     for i in range(5):
@@ -80,19 +78,13 @@ def jogo():
     escada2 = Sprite("imagens/escada1.png")
     escada2.set_position(1196, primeiro_nivel-escada2.height)
     soldado1 = Sprite("imagens/soldado2.png")
-    soldado1.set_position(882, segundo_nivel-soldado1.height)
+    soldado1.set_position(1100, segundo_nivel-soldado1.height)
     soldado2 = Sprite("imagens/soldado2.png")
     soldado2.set_position(400, segundo_nivel-soldado2.height)
-    soldado3 = Sprite("imagens/soldado2.png")
-    soldado3.set_position(200, primeiro_nivel - soldado3.height)
-    soldado4 = Sprite("imagens/soldado2.png")
-    soldado4.set_position(1100, primeiro_nivel - soldado4.height)
     soldado_morto1 = Sprite("imagens/soldado-morto.png")
     soldado_morto1.set_position(1092, terceiro_nivel-soldado_morto1.height)
     soldado.append(soldado1)
     soldado.append(soldado2)
-    soldado.append(soldado3)
-    soldado.append(soldado4)
     soldado_morto.append(soldado_morto1)
     joyfrente.set_position(248, segundo_nivel-soldado1.height-joyfrente.height)
     joy_play.set_position(300, 500)
@@ -101,32 +93,21 @@ def jogo():
     joysubindo.set_position(325, 457)
     dinamite.set_position(390, primeiro_nivel-dinamite.height)
     mochila.set_position(543, segundo_nivel-mochila.height)
-    seringa.set_position(956, primeiro_nivel-seringa.height)
-    primeirossocorros.set_position(1001, primeiro_nivel-primeirossocorros.height)
-    granada.set_position(438,segundo_nivel-granada.height)
-    atadura.set_position(200, primeiro_nivel - atadura.height)
-    pilula.set_position(1000, primeiro_nivel-pilula.height)
+    granada.set_position(700, segundo_nivel-granada.height)
+    atadura.set_position(100, primeiro_nivel - atadura.height)
+    pilula.set_position(750, segundo_nivel-pilula.height)
     for i in range(len(soldado)):
         necessidade_soldados_nome.append("0")
-    curativos_no_chao.append(seringa)
-    curativos_no_chao.append(primeirossocorros)
     curativos_no_chao.append(atadura)
     curativos_no_chao.append(pilula)
-    curativos_no_chao_nome.append("seringa")
-    curativos_no_chao_nome.append("primeirossocorros")
     curativos_no_chao_nome.append("atadura")
     curativos_no_chao_nome.append("pilula")
-    curativos_disponiveis_nome.append("seringa")
-    curativos_disponiveis_nome.append("primeirossocorros")
     curativos_disponiveis_nome.append("atadura")
     curativos_disponiveis_nome.append("pilula")
     obstaculos.append(barrada)
     obstaculos.append(caixa)
     #obstaculos.append(fogo)
-    itens_chao.append(primeirossocorros)
-    itens_chao_nome.append("primeiros_socorros")
-    itens_chao.append(seringa)
-    itens_chao_nome.append("seringa")
+
     itens_chao.append(granada)
     itens_chao_nome.append("granada")
     itens_chao.append(dinamite)
@@ -180,7 +161,8 @@ def jogo():
             janela.draw_text("A guerra ganhou dessa vez", 0, 0, 36, (255, 255, 0))
             janela.update()
             pygame.time.wait(4000)
-            return
+            import menu
+            menu.menu()
 
 
         if teclado.key_pressed("ESC"):

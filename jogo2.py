@@ -14,7 +14,6 @@ import salvamento
 
 
 def jogo2():
-    pygame.time.wait(200)
     obstaculos = []
     itens_chao = []
     itens_chao_nome = []
@@ -29,7 +28,7 @@ def jogo2():
     necessidade_soldados_nome = []
     necessidade_soldados = []
 
-    motivacao = 16
+    motivacao = 20
     duracao_motivacao = motivacao
     motiv_interface = []
 
@@ -46,14 +45,14 @@ def jogo2():
     joysubindo = Sprite("imagens/joy-subindo.png", 4)
     joyfrente = Sprite("imagens/joy-frente.png")
     joy_play = Sprite("imagens/joy-frente.png")
-    fogo = Sprite("imagens/fogo.png", 9)
+    #fogo = Sprite("imagens/fogo.png", 9)
     granada = Sprite("imagens/granada.png")
     dinamite = Sprite("imagens/dinamite.png")
     seringa = Sprite("imagens/seringa.png")
     barrada = Sprite("imagens/barrada1.png")
     mochila = Sprite("imagens/bolsa.png")
     atadura = Sprite("imagens/atadura.png")
-    primeirossocorros = Sprite("imagens/primeiros-socorros.png")
+    pilula = Sprite("imagens/pilula.png")
 
 
     for i in range(5):
@@ -68,7 +67,7 @@ def jogo2():
     joydireita.set_total_duration(400)
     joyesquerda.set_total_duration(400)
     joysubindo.set_total_duration(400)
-    fogo.set_total_duration(900)
+    #fogo.set_total_duration(900)
     joydireita.set_position(116, primeiro_nivel-joydireita.height)
     barrada.set_position(440,primeiro_nivel-barrada.height)
     caixa = Sprite("imagens/caixa.png")
@@ -80,7 +79,7 @@ def jogo2():
     escada2 = Sprite("imagens/escada1.png")
     escada2.set_position(1196, primeiro_nivel-escada2.height)
     soldado1 = Sprite("imagens/soldado2.png")
-    soldado1.set_position(882, segundo_nivel-soldado1.height)
+    soldado1.set_position(1100, segundo_nivel-soldado1.height)
     soldado2 = Sprite("imagens/soldado2.png")
     soldado2.set_position(400, segundo_nivel-soldado2.height)
     soldado3 = Sprite("imagens/soldado2.png")
@@ -93,31 +92,29 @@ def jogo2():
     soldado_morto.append(soldado_morto1)
     joyfrente.set_position(248, segundo_nivel-soldado1.height-joyfrente.height)
     joy_play.set_position(300, 500)
-    fogo.set_position(20, primeiro_nivel-fogo.height)
+    #fogo.set_position(20, primeiro_nivel-fogo.height)
     joyesquerda.set_position(1168, terceiro_nivel-joyesquerda.height)
     joysubindo.set_position(325, 457)
     dinamite.set_position(390, primeiro_nivel-dinamite.height)
     mochila.set_position(543, segundo_nivel-mochila.height)
     seringa.set_position(956, primeiro_nivel-seringa.height)
-    primeirossocorros.set_position(1001, primeiro_nivel-primeirossocorros.height)
-    granada.set_position(438,segundo_nivel-granada.height)
-    atadura.set_position(200, primeiro_nivel - atadura.height)
+    granada.set_position(700, segundo_nivel-granada.height)
+    atadura.set_position(100, primeiro_nivel - atadura.height)
+    pilula.set_position(750, segundo_nivel-pilula.height)
     for i in range(len(soldado)):
         necessidade_soldados_nome.append("0")
     curativos_no_chao.append(seringa)
-    curativos_no_chao.append(primeirossocorros)
     curativos_no_chao.append(atadura)
+    curativos_no_chao.append(pilula)
     curativos_no_chao_nome.append("seringa")
-    curativos_no_chao_nome.append("primeirossocorros")
     curativos_no_chao_nome.append("atadura")
+    curativos_no_chao_nome.append("pilula")
     curativos_disponiveis_nome.append("seringa")
-    curativos_disponiveis_nome.append("primeirossocorros")
     curativos_disponiveis_nome.append("atadura")
+    curativos_disponiveis_nome.append("pilula")
     obstaculos.append(barrada)
     obstaculos.append(caixa)
     #obstaculos.append(fogo)
-    itens_chao.append(primeirossocorros)
-    itens_chao_nome.append("primeiros_socorros")
     itens_chao.append(seringa)
     itens_chao_nome.append("seringa")
     itens_chao.append(granada)
@@ -126,6 +123,8 @@ def jogo2():
     itens_chao_nome.append("dinamite")
     itens_chao.append(atadura)
     itens_chao_nome.append("atadura")
+    itens_chao_nome.append("pilula")
+    itens_chao.append(pilula)
 
     joydireita.x = joyesquerda.x = joysubindo.x = joy_play.x
     joydireita.y = joyesquerda.y = joysubindo.y = joy_play.y
@@ -159,9 +158,7 @@ def jogo2():
         posicao_y_draw_inventario, motivacao = inventario.adiciona_item_na_bolsa(itens_chao, itens_chao_nome, bolsa, bolsa_nome, joy_play, posicao_y_draw_inventario, teclado, motivacao, duracao_motivacao)
 
         #removendo itens_chao da bolsa
-
         posicao_y_draw_inventario, posicao_y_draw_curativo, motivacao = inventario.remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_play, posicao_y_draw_inventario, teclado, obstaculos, soldado, necessidade_soldados_nome, necessidade_soldados, posicao_y_draw_curativo, motivacao, duracao_motivacao, janela, fundo, escada, escada1, escada2, soldado_morto, mochila, motiv_interface)
-
         #print(len(bolsa))
         posicao_y_draw_curativo = salvamento.saber_item_salvar_soldado(soldado, teclado, joy_play, necessidade_soldados_nome, curativos_disponiveis_nome, necessidade_soldados, posicao_y_draw_curativo)
         #posicao_y_draw_inventario = salvamento.salvamento(teclado, posicao_y_draw_inventario, bolsa, bolsa_nome, soldado,joy_play, itens_chao, itens_chao_nome, necessidade_soldados_nome)
@@ -173,7 +170,8 @@ def jogo2():
             janela.draw_text("A guerra ganhou dessa vez", 0, 0, 36, (255, 255, 0))
             janela.update()
             pygame.time.wait(4000)
-            return
+            import menu
+            menu.menu()
 
 
         if teclado.key_pressed("ESC"):
@@ -188,6 +186,5 @@ def jogo2():
         if outra_fase == 1:
             import jogo3
             jogo3.jogo3()
-
 
         janela.update()

@@ -13,7 +13,7 @@ import time
 import salvamento
 
 
-def jogo3():
+def jogo():
     obstaculos = []
     itens_chao = []
     itens_chao_nome = []
@@ -28,7 +28,7 @@ def jogo3():
     necessidade_soldados_nome = []
     necessidade_soldados = []
 
-    motivacao = 16
+    motivacao = 20
     duracao_motivacao = motivacao
     motiv_interface = []
 
@@ -47,6 +47,7 @@ def jogo3():
     joy_play = Sprite("imagens/joy-frente.png")
     #fogo = Sprite("imagens/fogo.png", 9)
     granada = Sprite("imagens/granada.png")
+    dinamite = Sprite("imagens/dinamite.png")
     seringa = Sprite("imagens/seringa.png")
     barrada = Sprite("imagens/barrada1.png")
     mochila = Sprite("imagens/bolsa.png")
@@ -98,6 +99,7 @@ def jogo3():
     #fogo.set_position(20, primeiro_nivel-fogo.height)
     joyesquerda.set_position(1168, terceiro_nivel-joyesquerda.height)
     joysubindo.set_position(325, 457)
+    dinamite.set_position(390, primeiro_nivel-dinamite.height)
     mochila.set_position(543, segundo_nivel-mochila.height)
     seringa.set_position(956, primeiro_nivel-seringa.height)
     primeirossocorros.set_position(1000, segundo_nivel-primeirossocorros.height)
@@ -127,6 +129,8 @@ def jogo3():
     itens_chao_nome.append("seringa")
     itens_chao.append(granada)
     itens_chao_nome.append("granada")
+    itens_chao.append(dinamite)
+    itens_chao_nome.append("dinamite")
     itens_chao.append(atadura)
     itens_chao_nome.append("atadura")
     itens_chao_nome.append("pilula")
@@ -176,8 +180,7 @@ def jogo3():
             janela.draw_text("A guerra ganhou dessa vez", 0, 0, 36, (255, 255, 0))
             janela.update()
             pygame.time.wait(4000)
-            import menu
-            menu.menu()
+            return
 
 
         if teclado.key_pressed("ESC"):
@@ -190,11 +193,7 @@ def jogo3():
             if soldado[i] != "-1":
                 outra_fase = 0
         if outra_fase == 1:
-            janela.draw_text("Parabéns, você ajudou os soldados a sobreviverem à guerra", 0, 0, 36, (255, 255, 0))
-            janela.update()
-            pygame.time.wait(4000)
-            import menu
-            menu.menu()
-            return
-           
+            import jogo2
+            jogo2.jogo2()
+
         janela.update()
