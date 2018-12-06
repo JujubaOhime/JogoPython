@@ -150,7 +150,7 @@ def jogo2():
         movimento.limite_mapa(primeiro_nivel, segundo_nivel, joy_play, joydireita, joyesquerda, teclado, final_do_mapa_direita, limite_esquerdo_segundo_nivel, SpeedX, janela, terceiro_nivel)
 
         #só pode subir ou descer se tiver em alguma escada
-        movimento.subir_descer_escada(joy_play, joysubindo, primeiro_nivel, segundo_nivel, escada, escada1, escada2, final_do_mapa_direita, teclado, janela, SpeedY, terceiro_nivel)
+        movimento.subir_descer_escada_1_2(joy_play, joysubindo, primeiro_nivel, segundo_nivel, escada, escada1, escada2, final_do_mapa_direita, teclado, janela, SpeedY, terceiro_nivel)
         # aqui é a colisão com os obstáculos
         movimento.colisao_obstaculos(obstaculos, joy_play)
 

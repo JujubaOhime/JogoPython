@@ -43,7 +43,7 @@ def limite_mapa(primeiro_nivel, segundo_nivel, joy_play, joydireita, joyesquerda
 		else:
 			joy_play.unhide()
 
-def subir_descer_escada(joy_play, joysubindo, primeiro_nivel, segundo_nivel, escada, escada1, escada2, final_do_mapa_direita, teclado, janela, SpeedY, terceiro_nivel):
+def subir_descer_escada_1_2(joy_play, joysubindo, primeiro_nivel, segundo_nivel, escada, escada1, escada2, final_do_mapa_direita, teclado, janela, SpeedY, terceiro_nivel):
 	if not(joy_play.x < (final_do_mapa_direita - joy_play.width)):
 		joy_play.set_position(final_do_mapa_direita-joy_play.width - 2, joy_play.y)
 	if((escada.x -15 < joy_play.x < escada.x + 15) or (escada1.x - 15 < joy_play.x < escada1.x + 15)):
@@ -60,7 +60,37 @@ def subir_descer_escada(joy_play, joysubindo, primeiro_nivel, segundo_nivel, esc
 		else:
 			joy_play.unhide()
 	elif (escada2.x - 15 < joy_play.x < escada2.x + 15):
-		if teclado.key_pressed("UP") and joy_play.y > terceiro_nivel - joy_play.height:
+		if teclado.key_pressed("UP") and joy_play.y > segundo_nivel - joy_play.height:
+			joy_play.move_y(-SpeedY * janela.delta_time())
+			joysubindo.draw()
+			joysubindo.update()
+			joy_play.hide()
+		elif teclado.key_pressed("DOWN") and joy_play.y < primeiro_nivel-joy_play.height:
+			joy_play.move_y(+SpeedY * janela.delta_time())
+			joysubindo.draw()
+			joysubindo.update()
+			joy_play.hide()
+		else:
+			joy_play.unhide()
+
+def subir_descer_escada_3(joy_play, joysubindo, primeiro_nivel, segundo_nivel, escada, escada1, escada2, final_do_mapa_direita, teclado, janela, SpeedY, terceiro_nivel):
+	if not(joy_play.x < (final_do_mapa_direita - joy_play.width)):
+		joy_play.set_position(final_do_mapa_direita-joy_play.width - 2, joy_play.y)
+	if((escada.x -15 < joy_play.x < escada.x + 15) or (escada1.x - 15 < joy_play.x < escada1.x + 15)):
+		if teclado.key_pressed("UP") and joy_play.y > segundo_nivel - joy_play.height:
+			joy_play.move_y(-SpeedY * janela.delta_time())
+			joysubindo.draw()
+			joysubindo.update()
+			joy_play.hide()
+		elif teclado.key_pressed("DOWN") and joy_play.y < primeiro_nivel-joy_play.height:
+			joy_play.move_y(+SpeedY * janela.delta_time())
+			joysubindo.draw()
+			joysubindo.update()
+			joy_play.hide()
+		else:
+			joy_play.unhide()
+	elif (escada2.x - 15 < joy_play.x < escada2.x + 15):
+		if teclado.key_pressed("UP") and segundo_nivel - joy_play.height > joy_play.y > terceiro_nivel - joy_play.height:
 			joy_play.move_y(-SpeedY * janela.delta_time())
 			joysubindo.draw()
 			joysubindo.update()
