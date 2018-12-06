@@ -173,7 +173,9 @@ def jogo3():
 
 
         if motivacao <= 0:
-            janela.draw_text("A guerra ganhou dessa vez", 0, 0, 36, (255, 255, 0))
+            perdeu = Sprite("imagens/perdeu.png")
+            perdeu.set_position(100, 242)
+            perdeu.draw()
             janela.update()
             pygame.time.wait(4000)
             import menu
@@ -190,7 +192,9 @@ def jogo3():
             if soldado[i] != "-1":
                 outra_fase = 0
         if outra_fase == 1:
-            janela.draw_text("Parabéns, você ajudou os soldados a sobreviverem à guerra", 0, 0, 36, (255, 255, 0))
+            ganhou = Sprite("imagens/ganhou.png")
+            ganhou.set_position(100, 228)
+            ganhou.draw()
             janela.update()
             pygame.time.wait(4000)
             import menu

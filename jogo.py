@@ -158,7 +158,9 @@ def jogo():
 
 
         if motivacao <= 0:
-            janela.draw_text("A guerra ganhou dessa vez", 0, 0, 36, (255, 255, 0))
+            perdeu = Sprite("imagens/perdeu.png")
+            perdeu.set_position(100, 242)
+            perdeu.draw()
             janela.update()
             pygame.time.wait(4000)
             import menu
