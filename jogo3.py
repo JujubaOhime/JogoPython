@@ -77,13 +77,13 @@ def jogo3():
     escada1 = Sprite("imagens/escada1.png")
     escada1.set_position(884, primeiro_nivel-escada1.height)
     escada2 = Sprite("imagens/escada1.png")
-    escada2.set_position(1196, primeiro_nivel-escada2.height)
+    escada2.set_position(1196, segundo_nivel-escada2.height)
     soldado1 = Sprite("imagens/soldado2.png")
     soldado1.set_position(1100, segundo_nivel-soldado1.height)
     soldado2 = Sprite("imagens/soldado2.png")
     soldado2.set_position(400, segundo_nivel-soldado2.height)
     soldado3 = Sprite("imagens/soldado2.png")
-    soldado3.set_position(200, primeiro_nivel - soldado3.height)
+    soldado3.set_position(1092, terceiro_nivel-soldado3.height)
     soldado4 = Sprite("imagens/soldado2.png")
     soldado4.set_position(1100, primeiro_nivel - soldado4.height)
     soldado_morto1 = Sprite("imagens/soldado-morto.png")
@@ -153,10 +153,10 @@ def jogo3():
 
 
         #range da joy no segundo andar
-        movimento.limite_mapa(primeiro_nivel, segundo_nivel, joy_play, joydireita, joyesquerda, teclado, final_do_mapa_direita, limite_esquerdo_segundo_nivel, SpeedX, janela)
+        movimento.limite_mapa(primeiro_nivel, segundo_nivel, joy_play, joydireita, joyesquerda, teclado, final_do_mapa_direita, limite_esquerdo_segundo_nivel, SpeedX, janela, terceiro_nivel)
 
         #só pode subir ou descer se tiver em alguma escada
-        movimento.subir_descer_escada(joy_play, joysubindo, primeiro_nivel, segundo_nivel, escada, escada1, escada2, final_do_mapa_direita, teclado, janela, SpeedY)
+        movimento.subir_descer_escada(joy_play, joysubindo, primeiro_nivel, segundo_nivel, escada, escada1, escada2, final_do_mapa_direita, teclado, janela, SpeedY, terceiro_nivel)
         # aqui é a colisão com os obstáculos
         movimento.colisao_obstaculos(obstaculos, joy_play)
 
@@ -198,3 +198,5 @@ def jogo3():
             return
            
         janela.update()
+
+jogo3()
