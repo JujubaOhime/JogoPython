@@ -341,7 +341,7 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 							#soldado.remove(i)
 							soldado[posicao] = "-1"
 							if motivacao <= duracao_motivacao*2/3:
-								motivacao = motivacao + duracao_motivacao/3
+								motivacao = motivacao + (duracao_motivacao * (2/5))
 							else:
 								motivacao = duracao_motivacao
 							#necessidade_soldados_nome.remove(necessidade_soldados_nome[posicao])
@@ -369,7 +369,7 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 							#soldado.remove(i)
 							soldado[posicao] = "-1"
 							if motivacao <= duracao_motivacao*2/3:
-								motivacao = motivacao + duracao_motivacao/3
+								motivacao = motivacao + (duracao_motivacao * (2/5))
 							else:
 								motivacao = duracao_motivacao
 							if len(necessidade_soldados) == 1:
@@ -417,37 +417,37 @@ def adiciona_item_na_bolsa(itens_chao, itens_chao_nome, bolsa, bolsa_nome, joy_p
 			if joy_play.collided(i):
 				posicao = itens_chao.index(i)
 				if(itens_chao_nome[posicao] == "primeiros_socorros"):
-					if motivacao <= duracao_motivacao*5/6:
-						motivacao = motivacao + duracao_motivacao/6
-					else:
-						motivacao = duracao_motivacao
+#					if motivacao <= duracao_motivacao*5/6:
+#						motivacao = motivacao + duracao_motivacao/6
+#					else:
+#						motivacao = duracao_motivacao
 					primeiros_socorros_grande = Sprite("imagens/primeiros-socorros-grande.png")
 					primeiros_socorros_grande.set_position(20, primeiros_socorros_grande.height + posicao_y_draw_inventario )
 					bolsa.append(primeiros_socorros_grande)
 					bolsa_nome.append("primeiros_socorros")
 				if(itens_chao_nome[posicao] == "seringa"):
-					if motivacao <= duracao_motivacao*5/6:
-						motivacao = motivacao + duracao_motivacao/6
-					else:
-						motivacao = duracao_motivacao
+#					if motivacao <= duracao_motivacao*5/6:
+#						motivacao = motivacao + duracao_motivacao/6
+#					else:
+#						motivacao = duracao_motivacao
 					seringa_grande = Sprite("imagens/seringa-grande.png")
 					seringa_grande.set_position(20, seringa_grande.height + posicao_y_draw_inventario )
 					bolsa.append(seringa_grande)
 					bolsa_nome.append("seringa")
 				if(itens_chao_nome[posicao] == "atadura"):
-					if motivacao <= duracao_motivacao*5/6:
-						motivacao = motivacao + duracao_motivacao/6
-					else:
-						motivacao = duracao_motivacao
+#					if motivacao <= duracao_motivacao*5/6:
+#						motivacao = motivacao + duracao_motivacao/6
+#					else:
+#						motivacao = duracao_motivacao
 					atadura_grande = Sprite("imagens/atadura-grande.png")
 					atadura_grande.set_position(20, atadura_grande.height + posicao_y_draw_inventario )
 					bolsa.append(atadura_grande)
 					bolsa_nome.append("atadura")
 				if(itens_chao_nome[posicao] == "pilula"):
-					if motivacao <= duracao_motivacao*5/6:
-						motivacao = motivacao + duracao_motivacao/6
-					else:
-						motivacao = duracao_motivacao
+#					if motivacao <= duracao_motivacao*5/6:
+#						motivacao = motivacao + duracao_motivacao/6
+#					else:
+#						motivacao = duracao_motivacao
 					pilula_grande = Sprite("imagens/pilula-grande.png")
 					pilula_grande.set_position(20, pilula_grande.height + posicao_y_draw_inventario )
 					bolsa.append(pilula_grande)
