@@ -25,6 +25,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					joyplay2.set_position(joy_play.x-50, joy_play.y)
 					if joyplay1.collided(i):
 						obstaculos.remove(i)
+						explosao_som = Sound("sons/explosao.ogg")
+						explosao_som.play()
+						explosao_som.set_repeat(False)
 						posicaox = i.x 
 						posicaoy = i.y
 						explosao = Sprite("imagens/explosion.png", 10)
@@ -44,6 +47,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 						animacao = 1
 					elif joyplay2.collided(i):
 						obstaculos.remove(i)
+						explosao_som = Sound("sons/explosao.ogg")
+						explosao_som.play()
+						explosao_som.set_repeat(False)
 						posicaox = i.x 
 						posicaoy = i.y
 						explosao = Sprite("imagens/explosion.png", 10)
@@ -62,6 +68,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 						passou = 1
 						animacao = 1
 				if passou == 0:
+					drop_som = Sound("sons/itens.ogg")
+					drop_som.play()
+					drop_som.set_repeat(False)
 					itens_chao.append(dinamite)
 					itens_chao_nome.append("dinamite")
 			elif bolsa_nome[-1] == "chave":
@@ -79,6 +88,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					joyplay2.set_position(joy_play.x-50, joy_play.y)
 					if joyplay1.collided(i):
 						obstaculos.remove(i)
+						explosao_som = Sound("sons/explosao.ogg")
+						explosao_som.play()
+						explosao_som.set_repeat(False)
 						posicaox = i.x 
 						posicaoy = i.y
 						explosao = Sprite("imagens/explosion.png", 10)
@@ -98,6 +110,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 						animacao = 1
 					elif joyplay2.collided(i):
 						obstaculos.remove(i)
+						explosao_som = Sound("sons/explosao.ogg")
+						explosao_som.play()
+						explosao_som.set_repeat(False)
 						posicaox = i.x 
 						posicaoy = i.y
 						explosao = Sprite("imagens/explosion.png", 10)
@@ -116,6 +131,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 						passou = 1
 						animacao = 1
 				if passou == 0:
+					drop_som = Sound("sons/itens.ogg")
+					drop_som.play()
+					drop_som.set_repeat(False)
 					itens_chao.append(granada)
 					itens_chao_nome.append("granada")
 			elif bolsa_nome[-1] == "seringa":
@@ -130,6 +148,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 					if necessidade_soldados_nome[posicao] == "seringa":
 						if joyplay1.collided(i):
 							soldado[posicao] = "-1"
+							cura_som = Sound("sons/cura.ogg")
+							cura_som.play()
+							cura_som.set_repeat(False)
 							#soldado.remove(i)
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
@@ -160,6 +181,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 						elif joyplay2.collided(i):
 							#soldado.remove(i)
 							soldado[posicao] = "-1"
+							cura_som = Sound("sons/cura.ogg")
+							cura_som.play()
+							cura_som.set_repeat(False)
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
@@ -185,6 +209,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 				if passou == 0:
+					drop_som = Sound("sons/itens.ogg")
+					drop_som.play()
+					drop_som.set_repeat(False)
 					seringa = Sprite("imagens/seringa.png")
 					seringa.set_position(joy_play.x, joy_play.y+joy_play.height-seringa.height)
 					itens_chao.append(seringa)
@@ -202,6 +229,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 						if joyplay1.collided(i):
 							#soldado.remove(i)
 							soldado[posicao] = "-1"
+							cura_som = Sound("sons/cura.ogg")
+							cura_som.play()
+							cura_som.set_repeat(False)
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
@@ -230,6 +260,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 						elif joyplay2.collided(i):
 							soldado[posicao] = "-1"
 							#soldado.remove(i)
+							cura_som = Sound("sons/cura.ogg")
+							cura_som.play()
+							cura_som.set_repeat(False)
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
@@ -254,6 +287,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 				if passou == 0:
+					drop_som = Sound("sons/itens.ogg")
+					drop_som.play()
+					drop_som.set_repeat(False)
 					atadura = Sprite("imagens/atadura.png")
 					atadura.set_position(joy_play.x, joy_play.y+joy_play.height-atadura.height)
 					itens_chao.append(atadura)
@@ -271,6 +307,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 						if joyplay1.collided(i):
 							#soldado.remove(i)
 							soldado[posicao] = "-1"
+							cura_som = Sound("sons/cura.ogg")
+							cura_som.play()
+							cura_som.set_repeat(False)
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
@@ -299,6 +338,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 						elif joyplay2.collided(i):
 							#soldado.remove(i)
 							soldado[posicao] = "-1"
+							cura_som = Sound("sons/cura.ogg")
+							cura_som.play()
+							cura_som.set_repeat(False)
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + duracao_motivacao/3
 							else:
@@ -323,6 +365,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 				if passou == 0:
+					drop_som = Sound("sons/itens.ogg")
+					drop_som.play()
+					drop_som.set_repeat(False)
 					pilula = Sprite("imagens/pilula.png")
 					pilula.set_position(joy_play.x, joy_play.y+joy_play.height-pilula.height)
 					itens_chao.append(pilula)
@@ -340,6 +385,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 						if joyplay1.collided(i):
 							#soldado.remove(i)
 							soldado[posicao] = "-1"
+							cura_som = Sound("sons/cura.ogg")
+							cura_som.play()
+							cura_som.set_repeat(False)
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + (duracao_motivacao * (2/5))
 							else:
@@ -368,6 +416,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 						elif joyplay2.collided(i):
 							#soldado.remove(i)
 							soldado[posicao] = "-1"
+							cura_som = Sound("sons/cura.ogg")
+							cura_som.play()
+							cura_som.set_repeat(False)
 							if motivacao <= duracao_motivacao*2/3:
 								motivacao = motivacao + (duracao_motivacao * (2/5))
 							else:
@@ -392,6 +443,9 @@ def remove_item_da_bolsa(bolsa, bolsa_nome, itens_chao, itens_chao_nome, joy_pla
 							animacao = 1
 							posicao_y_draw_curativo = posicao_y_draw_curativo - 130
 				if passou == 0:
+					drop_som = Sound("sons/itens.ogg")
+					drop_som.play()
+					drop_som.set_repeat(False)
 					primeirossocorros = Sprite("imagens/primeiros-socorros.png")
 					primeirossocorros.set_position(joy_play.x, joy_play.y+joy_play.height-primeirossocorros.height)
 					itens_chao.append(primeirossocorros)
