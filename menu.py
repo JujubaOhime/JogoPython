@@ -13,6 +13,8 @@ import inventario
 def menu():
     janela = Window(1300, 700)
     janela.set_title("Traces of War")
+    titulo = Sprite("imagens/tracesofwar.png")
+    titulo.set_position(259, 63)
     #fundo = GameImage("imagens/fundo_menu.png")
     #inicio = Sprite("imagens/jogar.png")
     #inicio_hover = Sprite("imagens/jogar_h.png")
@@ -52,13 +54,14 @@ def menu():
         #sair_hover.set_position(janela.width / 2 - x, 597)
 
         fundo_tow.draw ()
+        titulo.draw()
         inicio_tow.draw()
         inicio_tow.set_position(janela.width / 2 - x, 294)
         sair_tow.set_position(janela.width / 2 - x, 496)
 
         inicio_hover_tow.set_position(janela.width / 2 - x, 294)
         sair_hover_tow.set_position(janela.width / 2 - x, 496)
-
+    
 
         if mouse.is_over_object(inicio_tow):
             inicio_hover_tow.draw()
