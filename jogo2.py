@@ -29,7 +29,7 @@ def jogo2(trilha_sonora):
     necessidade_soldados_nome = []
     necessidade_soldados = []
 
-    motivacao = 21
+    motivacao = 24
     duracao_motivacao = motivacao
     motiv_interface = []
 
