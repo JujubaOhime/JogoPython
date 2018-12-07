@@ -39,7 +39,7 @@ def jogo(trilha_sonora):
     limite_esquerdo_segundo_nivel = 217
     janela = Window(1300, 700)
     teclado = Window.get_keyboard()
-    janela.set_title("Jogaynho")
+    janela.set_title("Traces of War")
     fundo = GameImage("imagens/fundo.png")
     joydireita = Sprite("imagens/joy-direita.png", 4)
     joyesquerda = Sprite("imagens/joy-esquerda.png", 4)

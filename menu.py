@@ -12,6 +12,7 @@ import rank
 import inventario
 def menu():
     janela = Window(1300, 700)
+    janela.set_title("Traces of War")
     #fundo = GameImage("imagens/fundo_menu.png")
     #inicio = Sprite("imagens/jogar.png")
     #inicio_hover = Sprite("imagens/jogar_h.png")
