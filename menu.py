@@ -10,7 +10,6 @@ import sys
 import jogo
 import rank
 import inventario
-
 def menu():
     janela = Window(1300, 700)
     #fundo = GameImage("imagens/fundo_menu.png")
@@ -34,7 +33,8 @@ def menu():
     D = 1
     mouse_timer = time.time()
     score = 0
-    
+    trilha_sonora = Sound("sons/trilha_sonora.ogg")
+    trilha_sonora.play()
     while True:
         #fundo.draw ()
         #inicio.draw()
@@ -62,7 +62,7 @@ def menu():
         if mouse.is_over_object(inicio_tow):
             inicio_hover_tow.draw()
             if mouse.is_button_pressed(1):
-                jogo.jogo()
+                jogo.jogo(trilha_sonora)
         else:
             inicio_tow.draw()
         '''

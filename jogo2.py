@@ -5,6 +5,7 @@ from PPlay.keyboard import *
 from PPlay.gameobject import*
 from PPlay.sprite import *
 from PPlay.collision import *
+from PPlay.sound import*
 import random
 import inventario
 import movimento
@@ -13,7 +14,7 @@ import time
 import salvamento
 
 
-def jogo2():
+def jogo2(trilha_sonora):
     obstaculos = []
     itens_chao = []
     itens_chao_nome = []
@@ -172,12 +173,14 @@ def jogo2():
             perdeu.draw()
             janela.update()
             pygame.time.wait(4000)
+            trilha_sonora.stop()
             import menu
             menu.menu()
 
 
         if teclado.key_pressed("ESC"):
             pygame.time.wait(150)
+            trilha_sonora.stop()
             import menu
             menu.menu()
 
@@ -187,6 +190,6 @@ def jogo2():
                 outra_fase = 0
         if outra_fase == 1:
             import jogo3
-            jogo3.jogo3()
+            jogo3.jogo3(trilha_sonora)
 
         janela.update()

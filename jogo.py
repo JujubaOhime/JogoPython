@@ -4,6 +4,7 @@ from PPlay.gameimage import *
 from PPlay.keyboard import *
 from PPlay.gameobject import*
 from PPlay.sprite import *
+from PPlay.sound import*
 from PPlay.collision import *
 import random
 import inventario
@@ -13,7 +14,7 @@ import time
 import salvamento
 
 
-def jogo():
+def jogo(trilha_sonora):
     obstaculos = []
     itens_chao = []
     itens_chao_nome = []
@@ -28,7 +29,7 @@ def jogo():
     necessidade_soldados_nome = []
     necessidade_soldados = []
 
-    motivacao = 20
+    motivacao = 18
     duracao_motivacao = motivacao
     motiv_interface = []
 
@@ -52,7 +53,6 @@ def jogo():
     mochila = Sprite("imagens/bolsa.png")
     atadura = Sprite("imagens/atadura.png")
     pilula = Sprite("imagens/pilula.png")
-
 
     for i in range(5):
         coracao_vivo = Sprite("imagens/heart_1.png")
@@ -163,12 +163,14 @@ def jogo():
             perdeu.draw()
             janela.update()
             pygame.time.wait(4000)
+            trilha_sonora.stop()
             import menu
             menu.menu()
 
 
         if teclado.key_pressed("ESC"):
             pygame.time.wait(150)
+            trilha_sonora.stop()
             import menu
             menu.menu()
 
@@ -178,6 +180,6 @@ def jogo():
                 outra_fase = 0
         if outra_fase == 1:
             import jogo2
-            jogo2.jogo2()
+            jogo2.jogo2(trilha_sonora)
 
         janela.update()

@@ -5,6 +5,7 @@ from PPlay.keyboard import *
 from PPlay.gameobject import*
 from PPlay.sprite import *
 from PPlay.collision import *
+from PPlay.sound import*
 import random
 import inventario
 import movimento
@@ -13,7 +14,7 @@ import time
 import salvamento
 
 
-def jogo3():
+def jogo3(trilha_sonora):
     obstaculos = []
     itens_chao = []
     itens_chao_nome = []
@@ -28,7 +29,7 @@ def jogo3():
     necessidade_soldados_nome = []
     necessidade_soldados = []
 
-    motivacao = 16
+    motivacao = 18
     duracao_motivacao = motivacao
     motiv_interface = []
 
@@ -178,12 +179,14 @@ def jogo3():
             perdeu.draw()
             janela.update()
             pygame.time.wait(4000)
+            trilha_sonora.stop()
             import menu
             menu.menu()
 
 
         if teclado.key_pressed("ESC"):
             pygame.time.wait(150)
+            trilha_sonora.stop()
             import menu
             menu.menu()
 
@@ -197,10 +200,11 @@ def jogo3():
             ganhou.draw()
             janela.update()
             pygame.time.wait(4000)
+            trilha_sonora.stop()
             import menu
             menu.menu()
             return
            
         janela.update()
 
-jogo3()
+    #jogo3(trilha_sonora)
